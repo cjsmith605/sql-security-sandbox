@@ -147,7 +147,7 @@ Both files have clear version headers in the HTML comment block at the top for e
 - README links to demo.html as the primary public link
 
 ### Pricing (TBD — Phase 3 Decision)
-- Suggested range: $29–$49 for individual
+- Final price determined in Mastermind chat during Phase 3
 - Enterprise/volume licensing via direct contact
 
 ---
