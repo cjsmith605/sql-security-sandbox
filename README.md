@@ -9,7 +9,7 @@
 
 ## Try the Free Demo
 
-**[Launch Demo →](https://cjsmith605.github.io/index/)**
+**[Launch Demo →](https://cjsmith605.github.io/sql-security-sandbox/)**
 
 The free demo includes **Module 1: SQL Fundamentals** — 4 fully interactive lessons with a live SQL query engine, XP tracking, and a module challenge. No sign-up required, runs entirely in your browser.
 
