@@ -25,20 +25,29 @@
 - **Framework mapping** stored as `lesson.framework = { nist: [...], mitre: [...] }` on every lesson object. All 17 lessons are mapped. Rendered via `.fw-chip.fw-nist` (blue) and `.fw-chip.fw-mitre` (purple) chips.
 - All user input MUST be escaped before `innerHTML` — use `escHtml()`. The syntax highlighter also does this.
 - Service worker (`sw.js`) + manifest (`manifest.json`) = PWA offline support.
-- **CSP note:** The `Content-Security-Policy` meta tag uses `default-src 'self' 'unsafe-inline' 'unsafe-eval'` — this blocks external CDN scripts by default. The sql.js CDN load works because it uses a dynamically appended `<script>` tag, not a `fetch()`. If adding any new external resources, either update the CSP or load them via dynamic script injection the same way.
+- **CSP note:** The `Content-Security-Policy` meta tag has been expanded to allow sql.js WASM from cdnjs.cloudflare.com. Current directives:
+  - `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com` — allows loading sql-wasm.min.js
+  - `connect-src 'self' https://cdnjs.cloudflare.com` — allows fetching sql-wasm.wasm binary
+  - `worker-src 'self' blob:` — allows sql.js to spawn its Web Worker via blob URL
+  - The SRI `integrity` attribute was removed from the dynamic script tag (conflicts with CSP in some browsers)
+  - If adding new external CDN resources, add them to `script-src` AND `connect-src` as needed
 
 ---
 
 ## Current State (Update This Every Session)
 
 ### Last Updated
-**April 12, 2026** — Session by Perplexity Computer (Phase 2 COMPLETE + UX polish + README rewrite)
+**April 12, 2026** — Session by Perplexity Computer (Phase 2 COMPLETE + UX polish + README rewrite + CSP bugfix)
 
 ### Phase
-**Phase 2 FULLY COMPLETE — deployed to main branch — ready for Phase 3**
+**Phase 2 FULLY COMPLETE ✅ — deployed to main branch — ready for Phase 3**
 
-### Git Log (last 5 commits)
+> Run Query is now fully working. CSP was blocking cdnjs.cloudflare.com; fixed in commit e3806d9.
+
+### Git Log (last 6 commits)
 ```
+e3806d9  fix(csp): allow cdnjs.cloudflare.com for sql.js WASM engine
+c412891  docs(handoff): full Phase 2 session update to AGENT_HANDOFF.md
 2cb4289  docs: update README to reflect Phase 2 complete
 1f0e123  fix(ux): make Dashboard, Run Query, and framework chips unmissable
 77b4bf7  feat(phase2): sql.js live query engine + NIST/MITRE framework labels
