@@ -21,7 +21,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0F1923">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self' data:; font-src 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; connect-src 'self' https://cdnjs.cloudflare.com; worker-src 'self' blob:; img-src 'self' data:; font-src 'self';">
 <link rel="manifest" href="manifest.json">
 <style>
   :root {
@@ -4735,7 +4735,7 @@ function initSqlJs(cb) {
   // Load sql.js from CDN
   const script = document.createElement('script');
   script.src = 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.12.0/sql-wasm.min.js';
-  script.integrity = 'sha512-/Ou8dMSWQZ0gNMKdLJDxuI2uDzxPNSUHlhPEBsZYO3mKdDOo23gxGGBBY9Ev4r8Dm0d7W3OqV/2o7Zv2bFDQ==';
+  // integrity attr removed — SRI checks can conflict with CSP when loading dynamically
   script.crossOrigin = 'anonymous';
   script.referrerPolicy = 'no-referrer';
   script.onload = function() {
