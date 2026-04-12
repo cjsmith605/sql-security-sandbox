@@ -1,0 +1,59 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate HTML
+        run: |
+          echo "Checking index.html exists and is non-empty..."
+          test -s index.html || (echo "index.html missing or empty" && exit 1)
+          echo "Checking for required meta tags..."
+          grep -q 'theme-color' index.html || echo "Warning: missing theme-color meta"
+          grep -q 'manifest.json' index.html || echo "Warning: missing manifest link"
+          grep -q 'Content-Security-Policy' index.html || echo "Warning: missing CSP"
+          echo "Validation passed."
+
+      - name: Check file sizes
+        run: |
+          echo "=== File sizes ==="
+          du -sh index.html manifest.json sw.js
+          echo "Total:"
+          du -sh .
+
+  deploy:
+    needs: validate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
