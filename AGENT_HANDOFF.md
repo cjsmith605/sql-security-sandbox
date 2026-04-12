@@ -19,6 +19,8 @@
 - **Vanilla JS only** — no frameworks, no npm, no bundler. Keep it this way unless explicitly decided otherwise.
 - **CSS custom properties** for all theming — defined in `:root`, colors: `--teal #00C9A7`, `--bg #0F1923`, `--gold #F0C040`, `--blue #2E74B5`
 - **localStorage** for all persistence (key: `cic_sql_sandbox_progress_v1`)
+- **sql.js** (SQLite WASM) lazy-loaded from CDN (`cdnjs.cloudflare.com/ajax/libs/sql.js/1.12.0/`). The shared DB (`sqlJsDb`) is seeded once at first use via `SQL_SEED` const. Tables: `auth_log`, `users`, `ip_watchlist`, `cloud_auth_log`. Do NOT call `db.run(SQL_SEED)` more than once — it uses `CREATE TABLE IF NOT EXISTS` but data inserts will duplicate if re-run.
+- **Framework mapping** stored as `lesson.framework = { nist: [...], mitre: [...] }` on every lesson object. All 17 lessons are mapped. Render via `.fw-chip.fw-nist` (blue) and `.fw-chip.fw-mitre` (purple) chips.
 - All user input MUST be escaped before `innerHTML` — the syntax highlighter already does this
 - Service worker (`sw.js`) + manifest (`manifest.json`) = PWA offline support
 
@@ -27,10 +29,10 @@
 ## Current State (Update This Every Session)
 
 ### Last Updated
-**April 12, 2026** — Session by Perplexity Computer (Phase 2 dashboard COMPLETE)
+**April 12, 2026** — Session by Perplexity Computer (Phase 2 COMPLETE)
 
 ### Phase
-**Phase 2 dashboard COMPLETE — deployed to main branch**
+**Phase 2 COMPLETE — fully deployed to main branch — ready for Phase 3**
 
 ### What's Implemented
 
@@ -60,10 +62,10 @@
 - [x] **`loadProgress()` patched** — restores `totalXP`, `unlockedAchievements` from localStorage on init
 - [x] **`updateXPChip()` called on init** — XP display correct on page refresh
 - [x] **Duplicate `goPage` patch resolved** — single merged patch handles both dashboard clear + closeSidebar
-- [ ] sql.js real query execution (NEXT — Phase 2 priority)
-- [ ] MITRE ATT&CK / NIST CSF mapping labels per lesson
-- [ ] PDF lab report export
-- [ ] Completion certificate (cryptographically hashed)
+- [x] **sql.js real query execution** — lazy-loads sql-wasm from CDN on first "Run Query" click; shared SQLite DB seeded with 25-row `auth_log`, `users`, `ip_watchlist`, `cloud_auth_log`; result table renders below each exercise; errors shown cleanly; +5 XP per first run per exercise; `escHtml()` prevents XSS in rendered results
+- [x] **MITRE ATT&CK + NIST CSF mapping labels** — all 17 lessons have `framework: { nist: [...], mitre: [...] }` property; blue chips render under each lesson title; purple MITRE chips render; sidebar shows color-coded dot indicators (blue=NIST, purple=MITRE); dashboard has "Framework Coverage" panel with grouped NIST functions and deduplicated MITRE technique chips
+- [ ] PDF lab report export (Phase 3 candidate)
+- [ ] Completion certificate (Phase 3 candidate)
 
 ---
 

@@ -560,6 +560,128 @@
   .page-dot:focus:not(:focus-visible) {
     outline: none;
   }
+
+  /* ── Phase 2: sql.js Live Query Results ──────────────────── */
+  .btn-run {
+    background: rgba(0,201,167,0.15);
+    border: 1px solid rgba(0,201,167,0.35);
+    color: var(--teal);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-run:hover { background: rgba(0,201,167,0.28); }
+  .btn-run:disabled { opacity: 0.4; cursor: default; }
+  .sql-result-wrap {
+    margin-top: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    display: none;
+  }
+  .sql-result-wrap.show { display: block; }
+  .sql-result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 12px;
+    background: rgba(0,201,167,0.08);
+    font-size: 0.76rem;
+    color: var(--teal);
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0,201,167,0.15);
+  }
+  .sql-result-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+    max-height: 220px;
+    overflow-y: auto;
+    display: block;
+  }
+  .sql-result-table th {
+    background: rgba(46,116,181,0.25);
+    color: #90C8FF;
+    padding: 5px 10px;
+    text-align: left;
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+    white-space: nowrap;
+  }
+  .sql-result-table td {
+    padding: 4px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.82);
+    white-space: nowrap;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sql-result-table tr:last-child td { border-bottom: none; }
+  .sql-result-table tr:hover td { background: rgba(255,255,255,0.04); }
+  .sql-result-error {
+    padding: 10px 12px;
+    color: var(--red);
+    font-size: 0.8rem;
+    font-family: monospace;
+    background: rgba(255,128,128,0.07);
+  }
+  .sql-result-empty {
+    padding: 10px 12px;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+  .sql-loading {
+    padding: 8px 12px;
+    color: var(--teal);
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+
+  /* ── Phase 2: Framework Label Chips (NIST CSF + MITRE ATT&CK) ── */
+  .framework-labels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .fw-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    line-height: 1.4;
+  }
+  .fw-nist {
+    background: rgba(46,116,181,0.2);
+    border: 1px solid rgba(46,116,181,0.4);
+    color: #90C8FF;
+  }
+  .fw-mitre {
+    background: rgba(192,159,232,0.15);
+    border: 1px solid rgba(192,159,232,0.35);
+    color: #C09FE8;
+  }
+  /* Framework labels on sidebar lesson buttons */
+  .lesson-fw-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .lesson-fw-dot.nist { background: #2E74B5; }
+  .lesson-fw-dot.mitre { background: #8060C0; }
 </style>
 </head>
 <body>
@@ -771,6 +893,7 @@ const lessons = [
     {
       module: "Module 1: SQL Fundamentals",
       title: "SELECT & FROM \u2014 Your First Query",
+      framework: { nist: ['DE.AE-1','DE.CM-7'], mitre: ['T1078 • Valid Accounts','T1133 • External Remote Services'] },
       pages: [
         // ---- PAGE 1: What Is SQL? (no exercises — pure intro) ----
         {
@@ -993,6 +1116,7 @@ const lessons = [
     {
       module: "Module 1: SQL Fundamentals",
       title: "WHERE \u2014 Filtering Your Results",
+      framework: { nist: ['DE.AE-3','DE.CM-1'], mitre: ['T1110 • Brute Force','T1087 • Account Discovery'] },
       pages: [
         // ---- PAGE 1: Introduction to WHERE ----
         {
@@ -1311,6 +1435,7 @@ const lessons = [
     {
       module: "Module 1: SQL Fundamentals",
       title: "ORDER BY & LIMIT \u2014 Sorting & Controlling Output",
+      framework: { nist: ['DE.AE-2','RS.AN-1'], mitre: ['T1071 • Application Layer Protocol','T1499 • Endpoint DoS'] },
       pages: [
         // ---- PAGE 1: ORDER BY Basics ----
         {
@@ -1532,6 +1657,7 @@ const lessons = [
     {
       module: "Module 1: SQL Fundamentals",
       title: "\u2694\uFE0F Module Challenge \u2014 Incident First Response",
+      framework: { nist: ['RS.AN-1','RS.AN-2','DE.AE-3'], mitre: ['T1110 • Brute Force','T1078 • Valid Accounts'] },
       pages: [
         {
           sections: [
@@ -1644,6 +1770,7 @@ const lessons = [
     {
       module: "Module 2: Multi-Table Queries",
       title: "INNER JOIN \u2014 Connecting Related Tables",
+      framework: { nist: ['DE.CM-3','ID.AM-5'], mitre: ['T1078 • Valid Accounts','T1136 • Create Account'] },
       pages: [
         // ---- PAGE 1: Why JOINs Matter ----
         {
@@ -1847,6 +1974,7 @@ const lessons = [
     {
       module: "Module 2: Multi-Table Queries",
       title: "LEFT JOIN \u2014 Finding Missing Matches",
+      framework: { nist: ['ID.AM-5','DE.AE-1'], mitre: ['T1078.001 • Default Accounts','T1098 • Account Manipulation'] },
       pages: [
         // ---- PAGE 1: LEFT vs INNER ----
         {
@@ -2035,6 +2163,7 @@ const lessons = [
     {
       module: "Module 2: Multi-Table Queries",
       title: "Aliases & Multiple JOINs \u2014 Power Queries",
+      framework: { nist: ['DE.CM-7','RS.AN-3'], mitre: ['T1518 • Software Discovery','T1046 • Network Service Discovery'] },
       pages: [
         // ---- PAGE 1: Table Aliases ----
         {
@@ -2221,6 +2350,7 @@ const lessons = [
     {
       module: "Module 2: Multi-Table Queries",
       title: "\u2694\uFE0F Module Challenge \u2014 Cross-System Correlation",
+      framework: { nist: ['DE.AE-4','RS.AN-2','RS.AN-3'], mitre: ['T1071 • Application Layer Protocol','T1078 • Valid Accounts'] },
       pages: [
         {
           sections: [
@@ -2315,6 +2445,7 @@ const lessons = [
     {
       module: "Module 3: Security Analysis",
       title: "COUNT & GROUP BY \u2014 Summarizing Data",
+      framework: { nist: ['DE.AE-4','DE.CM-8'], mitre: ['T1110.003 • Password Spraying','T1589 • Gather Victim Identity Info'] },
       pages: [
         // ---- PAGE 1: Aggregate Functions ----
         {
@@ -2543,6 +2674,7 @@ const lessons = [
     {
       module: "Module 3: Security Analysis",
       title: "HAVING \u2014 Filtering Grouped Results",
+      framework: { nist: ['DE.AE-4','RS.AN-1'], mitre: ['T1110.001 • Password Guessing','T1595 • Active Scanning'] },
       pages: [
         // ---- PAGE 1: HAVING vs WHERE ----
         {
@@ -2674,6 +2806,7 @@ const lessons = [
     {
       module: "Module 3: Security Analysis",
       title: "Subqueries \u2014 Queries Inside Queries",
+      framework: { nist: ['DE.AE-2','DE.CM-4'], mitre: ['T1190 • Exploit Public-Facing App','T1059 • Command & Scripting'] },
       pages: [
         // ---- PAGE 1: What Are Subqueries ----
         {
@@ -2808,6 +2941,7 @@ const lessons = [
     {
       module: "Module 3: Security Analysis",
       title: "\u2694\uFE0F Module Challenge \u2014 Threat Intelligence Report",
+      framework: { nist: ['RS.AN-2','RS.MI-1','ID.RA-3'], mitre: ['T1595.002 • Vulnerability Scanning','T1588 • Obtain Capabilities'] },
       pages: [
         {
           sections: [
@@ -2903,6 +3037,7 @@ const lessons = [
     {
       module: "Module 4: Advanced SQL",
       title: "DISTINCT, UNION & CASE WHEN \u2014 Shaping Your Data",
+      framework: { nist: ['DE.AE-5','RS.AN-4'], mitre: ['T1074 • Data Staged','T1020 • Automated Exfiltration'] },
       pages: [
         // ---- PAGE 1: Why Advanced SQL? ----
         {
@@ -3064,6 +3199,7 @@ const lessons = [
     {
       module: "Module 4: Advanced SQL",
       title: "Date/Time & String Functions \u2014 Parsing Real Logs",
+      framework: { nist: ['DE.CM-7','DE.AE-3'], mitre: ['T1070.006 • Timestomp','T1562 • Impair Defenses'] },
       pages: [
         // ---- PAGE 1: Date/Time Functions ----
         {
@@ -3194,6 +3330,7 @@ const lessons = [
     {
       module: "Module 4: Advanced SQL",
       title: "CTEs (WITH Clauses) \u2014 Multi-Step Queries Made Readable",
+      framework: { nist: ['DE.AE-2','RS.AN-3'], mitre: ['T1078.002 • Domain Accounts','T1021 • Remote Services'] },
       pages: [
         // ---- PAGE 1: Why CTEs ----
         {
@@ -3288,6 +3425,7 @@ const lessons = [
     {
       module: "Module 4: Advanced SQL",
       title: "Window Functions \u2014 SQL\'s Crown Jewel",
+      framework: { nist: ['DE.AE-4','RS.AN-2'], mitre: ['T1550 • Use Alternate Auth Material','T1563 • Remote Service Session Hijack'] },
       pages: [
         // ---- PAGE 1: What Are Window Functions? ----
         {
@@ -3425,6 +3563,7 @@ const lessons = [
     {
       module: "Module 4: Advanced SQL",
       title: "\u2694\uFE0F Module Challenge \u2014 Impossible Travel Detection",
+      framework: { nist: ['DE.AE-2','RS.AN-2','RS.AN-4'], mitre: ['T1078.004 • Cloud Accounts','T1550.001 • Application Access Token'] },
       pages: [
         {
           sections: [
@@ -3812,10 +3951,14 @@ function renderExercise(ex) {
       </div>
       <div class="btn-row">
         <button class="btn btn-submit" id="submit-btn-${ex.id}" onclick="submitAnswer('${ex.id}')" aria-label="Submit answer for ${ex.label}">Submit Answer</button>
+        <button class="btn-run" id="run-btn-${ex.id}" onclick="runQuery('${ex.id}')" aria-label="Run SQL query for ${ex.label}" title="Execute your query against the live database">&#9654; Run Query</button>
         <button class="btn btn-hint" id="hint-btn-${ex.id}" style="display:none;" onclick="showHint('${ex.id}')" aria-label="Show hint for ${ex.label}">Hint</button>
         <button class="btn btn-show" onclick="revealAnswer('${ex.id}')" aria-label="Reveal answer for ${ex.label}">Show Answer</button>
       </div>
       <div class="feedback-box" id="feedback-${ex.id}"></div>
+      <div class="sql-result-wrap" id="sql-result-${ex.id}" aria-live="polite">
+        <div id="sql-result-body-${ex.id}"></div>
+      </div>
       <div class="answer-box" id="answer-${ex.id}">
         <span class="badge badge-answer">Answer & Explanation</span><br><br>
         ${ex.answer}
@@ -3841,6 +3984,11 @@ function renderPage(mi, li, pi) {
     <div class="progress-bar" role="progressbar" aria-valuenow="${lessonPct}" aria-valuemin="0" aria-valuemax="100" aria-label="Lesson progress: ${lessonPct}% of module ${mi+1}"><div class="progress-fill" style="width:${lessonPct}%"></div></div>
     <div class="lesson-module">${L.module}</div>
     <h1 class="lesson-title">${L.title}</h1>
+    ${L.framework ? `<div class="framework-labels" aria-label="Framework mappings">${
+      (L.framework.nist || []).map(n => `<span class="fw-chip fw-nist" title="NIST Cybersecurity Framework">NIST ${n}</span>`).join('')
+    }${
+      (L.framework.mitre || []).map(m => `<span class="fw-chip fw-mitre" title="MITRE ATT&amp;CK">${m}</span>`).join('')
+    }</div>` : ''}
     <hr class="divider">
   `;
 
@@ -3975,7 +4123,12 @@ function buildSidebar() {
       const diff = (lessonDifficulty[mi] && lessonDifficulty[mi][li]) || 'beginner';
       const diffLabel = DIFFICULTY_LABELS[diff] || 'Beginner';
       const badge = `<span class="diff-badge diff-${diff}" aria-label="Difficulty: ${diffLabel}">${diffLabel}</span>`;
-      html += `<button class="lesson-btn" id="sb-${mi}-${li}" onclick="goPage(${mi},${li},0)" aria-label="Navigate to lesson: ${lname} (${diffLabel})">${lname}${badge}</button>`;
+      const fw = lessons[mi][li].framework;
+      const fwDots = fw ? [
+        fw.nist && fw.nist.length ? '<span class="lesson-fw-dot nist" title="NIST CSF mapped"></span>' : '',
+        fw.mitre && fw.mitre.length ? '<span class="lesson-fw-dot mitre" title="MITRE ATT&amp;CK mapped"></span>' : ''
+      ].join('') : '';
+      html += `<button class="lesson-btn" id="sb-${mi}-${li}" onclick="goPage(${mi},${li},0)" aria-label="Navigate to lesson: ${lname} (${diffLabel})">${lname}${badge}${fwDots}</button>`;
     });
   });
   document.getElementById('sidebar').innerHTML = html;
@@ -4233,6 +4386,33 @@ function renderDashboard() {
       <div class="db-section-title"><span>&#9642;</span> Recent Activity</div>
       <div class="activity-feed">${feedHTML}</div>
 
+      <div class="db-section-title"><span>&#9642;</span> Framework Coverage</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;">
+        <div style="background:var(--card);border:1px solid rgba(46,116,181,0.3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:0.72rem;font-weight:700;color:#90C8FF;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:10px;">&#9632; NIST CSF Objectives</div>
+          ${(() => {
+            const nistMap = {};
+            lessons.forEach(mod => mod.forEach(L => { if (L.framework && L.framework.nist) L.framework.nist.forEach(n => { nistMap[n] = (nistMap[n]||0)+1; }); }));
+            const cats = { 'ID':'Identify','PR':'Protect','DE':'Detect','RS':'Respond','RC':'Recover' };
+            const grouped = {};
+            Object.entries(nistMap).forEach(([k,v]) => { const cat = k.split('.')[0]; (grouped[cat] = grouped[cat]||[]).push({k,v}); });
+            return Object.entries(grouped).map(([cat,items]) =>
+              `<div style="margin-bottom:8px;"><div style="font-size:0.7rem;color:#90C8FF;font-weight:600;margin-bottom:3px;">${cats[cat]||cat}</div>${items.map(({k,v})=>
+                `<span class="fw-chip fw-nist" style="margin:2px;">${k} <span style="opacity:0.7;">&times;${v}</span></span>`).join('')}</div>`
+            ).join('');
+          })()}
+        </div>
+        <div style="background:var(--card);border:1px solid rgba(192,159,232,0.3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:0.72rem;font-weight:700;color:#C09FE8;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:10px;">&#9632; MITRE ATT&amp;CK Techniques</div>
+          <div style="display:flex;flex-wrap:wrap;gap:4px;">${(() => {
+            const mitreSet = new Set();
+            lessons.forEach(mod => mod.forEach(L => { if (L.framework && L.framework.mitre) L.framework.mitre.forEach(m => mitreSet.add(m)); }));
+            return [...mitreSet].map(m =>
+              `<span class="fw-chip fw-mitre">${m.split(' • ')[0]}</span>`).join('');
+          })()}</div>
+        </div>
+      </div>
+
       <div class="db-section-title"><span>&#9642;</span> All Lessons</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:32px;">
         ${moduleNames.map((mname, mi) =>
@@ -4379,6 +4559,225 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('sw.js').catch(() => {});
   });
+}
+
+// ============================================================
+// PHASE 2 — sql.js LIVE QUERY ENGINE
+// ============================================================
+// sql.js is loaded lazily from CDN on first "Run Query" click.
+// SQLite WASM runs entirely in-browser — zero server required.
+// We seed one shared DB instance with realistic security log data.
+
+let sqlJsDb = null;          // shared SQLite DB instance
+let sqlJsReady = false;      // true once wasm is loaded + DB seeded
+let sqlJsLoading = false;    // prevents duplicate loads
+
+// Seed data — realistic security scenario data matching lesson tables
+const SQL_SEED = `
+CREATE TABLE IF NOT EXISTS auth_log (
+  log_id     INTEGER PRIMARY KEY,
+  username   TEXT,
+  event_time TEXT,
+  source_ip  TEXT,
+  action     TEXT,
+  result     TEXT
+);
+INSERT INTO auth_log VALUES
+  (1,  'jdoe',          '2024-01-15 08:01:12', '10.0.1.5',     'LOGIN',       'SUCCESS'),
+  (2,  'jdoe',          '2024-01-15 08:02:33', '10.0.1.5',     'FILE_READ',   'SUCCESS'),
+  (3,  'admin_backup',  '2024-01-15 08:15:00', '203.0.113.45', 'LOGIN',       'FAILED'),
+  (4,  'admin_backup',  '2024-01-15 08:15:05', '203.0.113.45', 'LOGIN',       'FAILED'),
+  (5,  'admin_backup',  '2024-01-15 08:15:11', '203.0.113.45', 'LOGIN',       'FAILED'),
+  (6,  'admin_backup',  '2024-01-15 08:15:20', '203.0.113.45', 'LOGIN',       'SUCCESS'),
+  (7,  'admin_backup',  '2024-01-15 08:16:00', '203.0.113.45', 'PRIV_CHANGE', 'SUCCESS'),
+  (8,  'msmith',        '2024-01-15 09:00:00', '10.0.2.8',     'LOGIN',       'SUCCESS'),
+  (9,  'msmith',        '2024-01-15 09:30:00', '10.0.2.8',     'FILE_READ',   'SUCCESS'),
+  (10, 'rlee',          '2024-01-15 10:00:00', '10.0.3.21',    'LOGIN',       'FAILED'),
+  (11, 'rlee',          '2024-01-15 10:00:04', '10.0.3.21',    'LOGIN',       'FAILED'),
+  (12, 'rlee',          '2024-01-15 10:00:09', '10.0.3.21',    'LOGIN',       'SUCCESS'),
+  (13, 'jdoe',          '2024-01-15 11:45:00', '198.51.100.7', 'LOGIN',       'SUCCESS'),
+  (14, 'jdoe',          '2024-01-15 11:46:00', '198.51.100.7', 'PRIV_ESC',    'SUCCESS'),
+  (15, 'svc_etl',       '2024-01-15 12:00:00', '10.0.0.2',     'LOGIN',       'SUCCESS'),
+  (16, 'svc_etl',       '2024-01-15 12:01:00', '10.0.0.2',     'DB_QUERY',    'SUCCESS'),
+  (17, 'admin_backup',  '2024-01-15 13:00:00', '203.0.113.45', 'LOGIN',       'FAILED'),
+  (18, 'admin_backup',  '2024-01-15 13:00:03', '203.0.113.99', 'LOGIN',       'FAILED'),
+  (19, 'kpatel',        '2024-01-15 14:00:00', '10.0.4.14',    'LOGIN',       'SUCCESS'),
+  (20, 'kpatel',        '2024-01-15 14:00:30', '10.0.4.14',    'FILE_WRITE',  'SUCCESS'),
+  (21, 'kpatel',        '2024-01-15 14:05:00', '203.0.113.45', 'LOGIN',       'SUCCESS'),
+  (22, 'kpatel',        '2024-01-15 14:06:00', '203.0.113.45', 'FILE_WRITE',  'SUCCESS'),
+  (23, 'jdoe',          '2024-01-16 09:00:00', '10.0.1.5',     'LOGIN',       'SUCCESS'),
+  (24, 'msmith',        '2024-01-16 09:10:00', '10.0.2.8',     'LOGIN',       'SUCCESS'),
+  (25, 'svc_etl',       '2024-01-16 12:00:00', '10.0.0.2',     'LOGIN',       'SUCCESS');
+
+CREATE TABLE IF NOT EXISTS users (
+  user_id        INTEGER PRIMARY KEY,
+  username       TEXT UNIQUE,
+  full_name      TEXT,
+  department     TEXT,
+  role           TEXT,
+  account_status TEXT
+);
+INSERT INTO users VALUES
+  (1, 'jdoe',         'Jane Doe',        'Security',    'Analyst',       'ACTIVE'),
+  (2, 'admin_backup', 'Backup Admin',    'IT Ops',      'Admin',         'ACTIVE'),
+  (3, 'msmith',       'Mark Smith',      'Finance',     'Accountant',    'ACTIVE'),
+  (4, 'rlee',         'Rachel Lee',      'HR',          'Manager',       'ACTIVE'),
+  (5, 'kpatel',       'Kiran Patel',     'Engineering', 'Developer',     'ACTIVE'),
+  (6, 'svc_etl',      'ETL Service',     'IT Ops',      'Service Acct',  'ACTIVE'),
+  (7, 'tdavis',       'Tom Davis',       'Finance',     'Analyst',       'INACTIVE'),
+  (8, 'ghost_user',   'Deprovisioned',   'Unknown',     'None',          'INACTIVE');
+
+CREATE TABLE IF NOT EXISTS ip_watchlist (
+  id           INTEGER PRIMARY KEY,
+  ip_address   TEXT UNIQUE,
+  threat_level TEXT,
+  country      TEXT,
+  isp          TEXT,
+  added_date   TEXT
+);
+INSERT INTO ip_watchlist VALUES
+  (1, '203.0.113.45',  'HIGH',   'CN', 'Unknown ISP',   '2024-01-10'),
+  (2, '203.0.113.99',  'HIGH',   'RU', 'FastHost LLC',  '2024-01-12'),
+  (3, '198.51.100.7',  'MEDIUM', 'BR', 'NetBR SA',      '2024-01-13'),
+  (4, '198.51.100.22', 'LOW',    'US', 'Comcast',       '2024-01-14');
+
+CREATE TABLE IF NOT EXISTS cloud_auth_log (
+  log_id     INTEGER PRIMARY KEY,
+  username   TEXT,
+  event_time TEXT,
+  source_ip  TEXT,
+  action     TEXT,
+  result     TEXT
+);
+INSERT INTO cloud_auth_log VALUES
+  (1, 'jdoe',         '2024-01-15 08:00:50', '10.0.1.5',     'LOGIN',  'SUCCESS'),
+  (2, 'admin_backup', '2024-01-15 08:14:55', '203.0.113.45', 'LOGIN',  'FAILED'),
+  (3, 'admin_backup', '2024-01-15 08:15:01', '203.0.113.45', 'LOGIN',  'FAILED'),
+  (4, 'msmith',       '2024-01-15 09:00:10', '10.0.2.8',     'LOGIN',  'SUCCESS'),
+  (5, 'ghost_acct',   '2024-01-15 10:30:00', '203.0.113.45', 'LOGIN',  'FAILED'),
+  (6, 'ghost_acct',   '2024-01-15 10:30:05', '203.0.113.45', 'LOGIN',  'FAILED'),
+  (7, 'ghost_acct',   '2024-01-15 10:30:09', '203.0.113.45', 'LOGIN',  'SUCCESS'),
+  (8, 'kpatel',       '2024-01-15 13:59:55', '10.0.4.14',    'LOGIN',  'SUCCESS');
+`;
+
+/**
+ * Lazy-load sql.js WASM from CDN, seed the DB, then call cb(db).
+ * Safe to call multiple times — only loads once.
+ */
+function initSqlJs(cb) {
+  if (sqlJsReady && sqlJsDb) { cb(sqlJsDb); return; }
+  if (sqlJsLoading) {
+    // Queue the callback to fire when loading completes
+    const poller = setInterval(() => {
+      if (sqlJsReady && sqlJsDb) { clearInterval(poller); cb(sqlJsDb); }
+    }, 100);
+    return;
+  }
+  sqlJsLoading = true;
+  // Load sql.js from CDN
+  const script = document.createElement('script');
+  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.12.0/sql-wasm.min.js';
+  script.integrity = 'sha512-/Ou8dMSWQZ0gNMKdLJDxuI2uDzxPNSUHlhPEBsZYO3mKdDOo23gxGGBBY9Ev4r8Dm0d7W3OqV/2o7Zv2bFDQ==';
+  script.crossOrigin = 'anonymous';
+  script.referrerPolicy = 'no-referrer';
+  script.onload = function() {
+    if (typeof initSqlJsLib === 'undefined' && typeof window.initSqlJs !== 'undefined') {
+      // The library exports as window.initSqlJs
+    }
+    const initFn = window.initSqlJs;
+    if (!initFn) {
+      console.error('sql.js failed to load');
+      sqlJsLoading = false;
+      return;
+    }
+    initFn({ locateFile: f => 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.12.0/' + f })
+      .then(function(SQL) {
+        const db = new SQL.Database();
+        db.run(SQL_SEED);
+        sqlJsDb = db;
+        sqlJsReady = true;
+        sqlJsLoading = false;
+        cb(db);
+      })
+      .catch(function(err) {
+        console.error('sql.js init error:', err);
+        sqlJsLoading = false;
+      });
+  };
+  script.onerror = function() {
+    sqlJsLoading = false;
+    console.error('sql.js CDN script failed to load');
+  };
+  document.head.appendChild(script);
+}
+
+/**
+ * Run user SQL against the live SQLite DB and render results
+ * into the result panel for the given exercise ID.
+ */
+function runQuery(exId) {
+  const input = document.getElementById('editor-input-' + exId);
+  const resultWrap = document.getElementById('sql-result-' + exId);
+  const resultBody = document.getElementById('sql-result-body-' + exId);
+  const runBtn = document.getElementById('run-btn-' + exId);
+  if (!input || !resultWrap || !resultBody) return;
+
+  const sql = input.value.trim();
+  if (!sql) return;
+
+  // Show the panel with loading state
+  resultWrap.classList.add('show');
+  resultBody.innerHTML = '<div class="sql-loading">&#9654; Running query…</div>';
+  if (runBtn) runBtn.disabled = true;
+
+  initSqlJs(function(db) {
+    if (runBtn) runBtn.disabled = false;
+    try {
+      const results = db.exec(sql);
+      if (!results || results.length === 0) {
+        resultBody.innerHTML = '<div class="sql-result-empty">Query ran successfully — 0 rows returned.</div>';
+        return;
+      }
+      // Render result table (show up to 50 rows to keep UI fast)
+      const { columns, values } = results[0];
+      const rowCount = values.length;
+      const displayRows = values.slice(0, 50);
+      let tableHtml = `
+        <div class="sql-result-header">
+          <span>&#10003; ${rowCount} row${rowCount !== 1 ? 's' : ''} returned</span>
+          ${rowCount > 50 ? '<span style="color:var(--gold)">Showing first 50</span>' : ''}
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="sql-result-table">
+            <thead><tr>${columns.map(c => `<th>${escHtml(String(c))}</th>`).join('')}</tr></thead>
+            <tbody>
+      `;
+      displayRows.forEach(row => {
+        tableHtml += '<tr>' + row.map(v =>
+          `<td>${v === null ? '<span style="color:rgba(255,255,255,0.3)">NULL</span>' : escHtml(String(v))}</td>`
+        ).join('') + '</tr>';
+      });
+      tableHtml += '</tbody></table></div>';
+      resultBody.innerHTML = tableHtml;
+
+      // Award XP for first time running a query in this exercise
+      const runKey = 'ran_' + exId;
+      if (!unlockedAchievements.has(runKey)) {
+        unlockedAchievements.add(runKey);
+        awardXP(5, 'Query executed');
+        checkAchievements();
+      }
+    } catch (err) {
+      // Strip WASM noise from error messages
+      const msg = String(err.message || err).replace(/^RuntimeError: .*(\n|$)/,'').trim();
+      resultBody.innerHTML = `<div class="sql-result-error">&#9888; ${escHtml(msg)}</div>`;
+    }
+  });
+}
+
+/** Escape HTML for safe rendering in result tables */
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
 // ============================================================
