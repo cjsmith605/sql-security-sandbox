@@ -37,16 +37,21 @@
 ## Current State (Update This Every Session)
 
 ### Last Updated
-**April 12, 2026** — Session by Perplexity Computer (Phase 2 COMPLETE + CSP bugfix + demo.html + Gumroad strategy)
+**April 12, 2026** — Session by Perplexity Computer (Phase 2 COMPLETE + CSP bugfix + demo + SQL_SEED date fix + loadSqlEngine rename)
 
 ### Phase
 **Phase 2 FULLY COMPLETE ✅ — deployed to main branch — ready for Phase 3**
 
 > Run Query is now fully working. CSP was blocking cdnjs.cloudflare.com; fixed in commit e3806d9.
 > Free demo (demo.html) created with Module 1 only + Gumroad upgrade CTAs.
+> SQL_SEED dates fixed: 2024-01-15 → 2026-04-07, admin_backup overnight attack now at 02:14–02:16.
+> initSqlJs wrapper renamed to loadSqlEngine() — prevents CDN name collision causing Run Query to hang after first use.
 
 ### Git Log (last 8 commits)
 ```
+6831e5a  fix(seed): align SQL_SEED dates with lesson narrative
+108909b  Update README.md (user edit via GitHub UI)
+911b6fa  fix(critical): rename initSqlJs wrapper to loadSqlEngine
 68a3c80  feat: add free demo (Module 1 only) with Gumroad upgrade CTA
 768bec0  docs(handoff): update CSP fix note and Phase 2 status
 e3806d9  fix(csp): allow cdnjs.cloudflare.com for sql.js WASM engine
@@ -144,6 +149,19 @@ Both files have clear version headers in the HTML comment block at the top for e
 ### Pricing (TBD — Phase 3 Decision)
 - Suggested range: $29–$49 for individual
 - Enterprise/volume licensing via direct contact
+
+---
+
+## Known Bugs Fixed This Session
+
+### 1. Run Query hangs after first use (FIXED — commit 911b6fa)
+- **Root cause:** `window.initSqlJs` is exported by the sql.js CDN library. Our wrapper was also named `initSqlJs`, so the library overwrote our function on load. Second call invoked the raw factory which expects a config object, not a callback — hung forever.
+- **Fix:** Renamed our wrapper to `loadSqlEngine()`. Applied in both `index.html` (demo) and `sql-security-sandbox-FULL-VERSION.html`.
+
+### 2. Module Challenge "0 rows returned" (FIXED — commit 6831e5a)
+- **Root cause:** `SQL_SEED` used `2024-01-15` dates with `admin_backup` activity at `08:15` AM. All lessons, examples, and challenge exercises reference `2026-04-07` dates with `admin_backup` at `02:14–02:16` (overnight). Complete mismatch — no rows ever matched.
+- **Fix:** Updated all `SQL_SEED` dates to `2026-04-07/08`. Moved `admin_backup` attack rows to `02:14–02:16` overnight window. `cloud_auth_log` and `ip_watchlist` dates updated to match.
+- **Verified:** Challenge 1 BETWEEN query now returns 5 rows as expected.
 
 ---
 
