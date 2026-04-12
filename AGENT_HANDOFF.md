@@ -37,22 +37,24 @@
 ## Current State (Update This Every Session)
 
 ### Last Updated
-**April 12, 2026** — Session by Perplexity Computer (Phase 2 COMPLETE + UX polish + README rewrite + CSP bugfix)
+**April 12, 2026** — Session by Perplexity Computer (Phase 2 COMPLETE + CSP bugfix + demo.html + Gumroad strategy)
 
 ### Phase
 **Phase 2 FULLY COMPLETE ✅ — deployed to main branch — ready for Phase 3**
 
 > Run Query is now fully working. CSP was blocking cdnjs.cloudflare.com; fixed in commit e3806d9.
+> Free demo (demo.html) created with Module 1 only + Gumroad upgrade CTAs.
 
-### Git Log (last 6 commits)
+### Git Log (last 8 commits)
 ```
+68a3c80  feat: add free demo (Module 1 only) with Gumroad upgrade CTA
+768bec0  docs(handoff): update CSP fix note and Phase 2 status
 e3806d9  fix(csp): allow cdnjs.cloudflare.com for sql.js WASM engine
 c412891  docs(handoff): full Phase 2 session update to AGENT_HANDOFF.md
 2cb4289  docs: update README to reflect Phase 2 complete
 1f0e123  fix(ux): make Dashboard, Run Query, and framework chips unmissable
 77b4bf7  feat(phase2): sql.js live query engine + NIST/MITRE framework labels
 4c436d2  feat(phase2): complete interactive dashboard + XP/achievement system
-b0f9921  Phase 1: GitHub-ready portfolio polish
 ```
 
 ### What's Implemented
@@ -98,11 +100,48 @@ b0f9921  Phase 1: GitHub-ready portfolio polish
 #### Still Deferred (Phase 3+)
 - [ ] PDF lab report export per lesson
 - [ ] Completion certificate (cryptographically hashed, shareable)
-- [ ] Payment gating (Stripe/Gumroad) for Modules 3–4
+- [ ] Gumroad product page setup and payment integration
 - [ ] SCORM packaging for enterprise LMS
 - [ ] Marketing landing page
 - [ ] demo.gif / og:image screenshot (needs screen recording software)
 - [ ] Color contrast WCAG audit
+
+---
+
+## Demo & Monetization Strategy
+
+### File Structure
+| File | Version | Content |
+|---|---|---|
+| `index.html` | **FULL VERSION** (paid) | All 4 modules, 17 lessons, complete training DB |
+| `demo.html` | **FREE DEMO** | Module 1 only (4 lessons), upgrade CTAs throughout |
+
+Both files have clear version headers in the HTML comment block at the top for easy identification.
+
+### Demo Details (`demo.html`)
+- **Module 1: SQL Fundamentals** — fully playable (all 4 lessons, all exercises, Run Query works)
+- Modules 2–4 are **completely removed** (not locked/hidden — absent from the code)
+- `moduleNames`, `lessonNames`, `lessonDifficulty` arrays trimmed to Module 1 only
+- **Sidebar CTA** — orange "Unlock All 4 Modules" pill below the subtitle
+- **Dashboard CTA** — gold-bordered upgrade banner above the footer
+- **Upgrade modal** — `showUpgradeModal()` function, lists all locked content + Gumroad link
+- **Welcome overlay** — labeled "(FREE DEMO)" in orange
+- **Title/OG tags** — updated to say "FREE DEMO | Module 1"
+
+### Sales Platform
+- **Gumroad** (primary) — one-time purchase, instant download, lifetime updates
+- Gumroad product page needs to be created (Phase 3)
+- Placeholder link `https://gumroad.com` used in demo CTAs — **update to real product URL when created**
+- **Teachable** (future/Phase 4) — for full course with video content
+
+### GitHub Pages
+- **Demo URL:** `https://cjsmith605.github.io/sql-security-sandbox/demo.html`
+- **Full version URL:** `https://cjsmith605.github.io/sql-security-sandbox/` (index.html — keep public for now as portfolio piece; move behind Gumroad in Phase 3)
+- README links to demo.html as the primary public link
+
+### Pricing (TBD — Phase 3 Decision)
+- Suggested range: $29–$49 for individual
+- Enterprise/volume licensing via direct contact
 
 ---
 
