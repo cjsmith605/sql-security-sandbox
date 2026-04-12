@@ -1913,12 +1913,18 @@ function loadProgress() {
 }
 
 function resetProgress() {
-  if (!confirm('Erase all saved progress and start over from Module 1, Lesson 1? This cannot be undone.')) return;
+  if (!confirm('Reset ALL progress? This will erase your completed lessons, XP, achievements, and query history. You will start over from Module 1, Lesson 1. This cannot be undone.')) return;
+  // Clear localStorage
   try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+  // Reset all in-memory state
   Object.keys(exerciseState).forEach(k => delete exerciseState[k]);
   completed.clear();
   visitedPages.clear();
+  unlockedAchievements.clear();
+  totalXP = 0;
   currentModule = 0; currentLesson = 0; currentPage = 0;
+  // Update UI
+  updateXPChip();
   document.querySelectorAll('.lesson-btn').forEach(b => b.classList.remove('done'));
   renderPage(0, 0, 0);
   // Re-show welcome modal after reset
