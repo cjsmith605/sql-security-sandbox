@@ -3,13 +3,13 @@
 > **Cosmic Innovators Collective** — Building Digital Guardians
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-success)](https://cjsmith605.github.io/sql-security-sandbox/demo.html)
+[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-success)](https://cjsmith605.github.io/sql-security-sandbox/)
 
 ---
 
 ## Try the Free Demo
 
-**[Launch Demo →](https://cjsmith605.github.io/sql-security-sandbox/demo.html)**
+**[Launch Demo →](https://cjsmith605.github.io/sql-security-sandbox/)**
 
 The free demo includes **Module 1: SQL Fundamentals** — 4 fully interactive lessons with a live SQL query engine, XP tracking, and a module challenge. No sign-up required, runs entirely in your browser.
 
@@ -92,7 +92,7 @@ Looking to train your team? The SQL Security Sandbox can be deployed as an inter
 
 | Property | Detail |
 |---|---|
-| File | Single HTML file (`index.html` = full, `demo.html` = free demo) |
+| File | Single HTML file (`index.html` = public demo, full version sold via Gumroad) |
 | JS | Vanilla JavaScript — no frameworks, no build step |
 | SQL Engine | sql.js 1.12.0 (SQLite WASM) loaded from CDN |
 | Persistence | `localStorage` (key: `cic_sql_sandbox_progress_v1`) |
@@ -106,8 +106,8 @@ Looking to train your team? The SQL Security Sandbox can be deployed as an inter
 
 | File | Description |
 |---|---|
-| `index.html` | **Full version** — all 4 modules, 17 lessons (paid product) |
-| `demo.html` | **Free demo** — Module 1 only, with upgrade CTAs |
+| `index.html` | **Free demo** — Module 1 only, with upgrade CTAs (public, GitHub Pages) |
+| `sql-security-sandbox-FULL-VERSION.html` | **Full version** — all 4 modules, 17 lessons (sold via Gumroad, not in repo) |
 | `AGENT_HANDOFF.md` | Development handoff file for AI agents (Perplexity Computer / Claude) |
 | `README.md` | This file |
 | `sw.js` | Service worker for PWA offline caching |

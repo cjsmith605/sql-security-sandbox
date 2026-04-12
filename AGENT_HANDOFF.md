@@ -113,10 +113,12 @@ c412891  docs(handoff): full Phase 2 session update to AGENT_HANDOFF.md
 ### File Structure
 | File | Version | Content |
 |---|---|---|
-| `index.html` | **FULL VERSION** (paid) | All 4 modules, 17 lessons, complete training DB |
-| `demo.html` | **FREE DEMO** | Module 1 only (4 lessons), upgrade CTAs throughout |
+| `index.html` | **FREE DEMO** (public) | Module 1 only — this IS the old demo.html, renamed for GitHub Pages |
+| `sql-security-sandbox-FULL-VERSION.html` | **FULL VERSION** (private/local) | All 4 modules, 17 lessons — stored locally, sold via Gumroad, NEVER committed |
 
 Both files have clear version headers in the HTML comment block at the top for easy identification.
+
+> **CRITICAL:** `sql-security-sandbox-FULL-VERSION.html` is in `.gitignore` — never commit it. It lives at `/home/user/workspace/sql-security-sandbox-FULL-VERSION.html` (one level above the repo folder).
 
 ### Demo Details (`demo.html`)
 - **Module 1: SQL Fundamentals** — fully playable (all 4 lessons, all exercises, Run Query works)
@@ -135,8 +137,8 @@ Both files have clear version headers in the HTML comment block at the top for e
 - **Teachable** (future/Phase 4) — for full course with video content
 
 ### GitHub Pages
-- **Demo URL:** `https://cjsmith605.github.io/sql-security-sandbox/demo.html`
-- **Full version URL:** `https://cjsmith605.github.io/sql-security-sandbox/` (index.html — keep public for now as portfolio piece; move behind Gumroad in Phase 3)
+- **Demo URL (primary):** `https://cjsmith605.github.io/sql-security-sandbox/` — served from `index.html` (which is the renamed demo.html)
+- **Full version:** NOT on GitHub. Delivered as Gumroad download. Local file: `/home/user/workspace/sql-security-sandbox-FULL-VERSION.html`
 - README links to demo.html as the primary public link
 
 ### Pricing (TBD — Phase 3 Decision)
