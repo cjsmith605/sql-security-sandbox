@@ -490,18 +490,28 @@
   .activity-text { color: var(--text); flex: 1; }
   .activity-time { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
 
-  /* SIDEBAR HOME BUTTON */
+  /* SIDEBAR HOME BUTTON — bold gold pill, can't miss it */
   .sidebar-home-btn {
     display: flex; align-items: center; gap: 10px;
-    width: 100%; padding: 14px 20px;
-    background: none; border: none; border-bottom: 1px solid var(--border);
-    color: var(--teal); text-align: left; cursor: pointer;
-    font-size: 0.88rem; font-weight: 700; letter-spacing: 0.5px;
-    transition: all 0.2s; margin-bottom: 8px;
+    width: calc(100% - 24px); margin: 12px 12px 14px 12px;
+    padding: 11px 18px;
+    background: linear-gradient(135deg, #F0C040 0%, #E8A030 100%);
+    border: none; border-radius: 8px;
+    color: #0F1923; text-align: left; cursor: pointer;
+    font-size: 0.9rem; font-weight: 800; letter-spacing: 0.4px;
+    transition: all 0.18s; box-shadow: 0 2px 10px rgba(240,192,64,0.35);
   }
-  .sidebar-home-btn:hover { background: rgba(0,201,167,0.08); }
-  .sidebar-home-btn.active { background: rgba(0,201,167,0.1); border-left: 3px solid var(--teal); }
-  .sidebar-home-icon { font-size: 1rem; }
+  .sidebar-home-btn:hover {
+    background: linear-gradient(135deg, #FFD050 0%, #F0B020 100%);
+    box-shadow: 0 4px 16px rgba(240,192,64,0.5);
+    transform: translateY(-1px);
+  }
+  .sidebar-home-btn:active { transform: translateY(0); }
+  .sidebar-home-btn.active {
+    background: linear-gradient(135deg, #FFD050 0%, #E09020 100%);
+    box-shadow: 0 2px 12px rgba(240,192,64,0.6);
+  }
+  .sidebar-home-icon { font-size: 1.1rem; }
 
   /* XP chip in header */
   .xp-chip {
@@ -562,19 +572,29 @@
   }
 
   /* ── Phase 2: sql.js Live Query Results ──────────────────── */
+  /* Run Query — vivid orange/amber, unmissable against dark bg */
   .btn-run {
-    background: rgba(0,201,167,0.15);
-    border: 1px solid rgba(0,201,167,0.35);
-    color: var(--teal);
-    padding: 6px 14px;
+    background: linear-gradient(135deg, #FF8C00 0%, #E06000 100%);
+    border: none;
+    color: #FFFFFF;
+    padding: 9px 18px;
     border-radius: 6px;
-    font-size: 0.82rem;
-    font-weight: 600;
+    font-size: 0.88rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: background 0.15s;
+    transition: all 0.18s;
+    box-shadow: 0 2px 8px rgba(255,140,0,0.4);
+    letter-spacing: 0.2px;
+    margin-right: 8px;
+    margin-top: 8px;
   }
-  .btn-run:hover { background: rgba(0,201,167,0.28); }
-  .btn-run:disabled { opacity: 0.4; cursor: default; }
+  .btn-run:hover {
+    background: linear-gradient(135deg, #FFA020 0%, #E07010 100%);
+    box-shadow: 0 3px 12px rgba(255,140,0,0.6);
+    transform: translateY(-1px);
+  }
+  .btn-run:active { transform: translateY(0); }
+  .btn-run:disabled { opacity: 0.45; cursor: default; transform: none; box-shadow: none; }
   .sql-result-wrap {
     margin-top: 10px;
     border-radius: 8px;
@@ -647,41 +667,59 @@
   .framework-labels {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 14px;
+    gap: 7px;
+    margin: 6px 0 18px 0;
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .framework-labels-title {
+    width: 100%;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
   }
   .fw-chip {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    padding: 3px 9px;
+    padding: 5px 12px;
     border-radius: 20px;
-    font-size: 0.7rem;
+    font-size: 0.76rem;
     font-weight: 700;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
     line-height: 1.4;
+    transition: transform 0.15s;
   }
+  .fw-chip:hover { transform: translateY(-1px); }
   .fw-nist {
-    background: rgba(46,116,181,0.2);
-    border: 1px solid rgba(46,116,181,0.4);
-    color: #90C8FF;
+    background: rgba(46,116,181,0.25);
+    border: 1px solid rgba(100,170,255,0.5);
+    color: #A8D4FF;
+    box-shadow: 0 0 8px rgba(46,116,181,0.2);
   }
   .fw-mitre {
-    background: rgba(192,159,232,0.15);
-    border: 1px solid rgba(192,159,232,0.35);
-    color: #C09FE8;
+    background: rgba(192,159,232,0.2);
+    border: 1px solid rgba(192,159,232,0.55);
+    color: #D4BAFF;
+    box-shadow: 0 0 8px rgba(192,159,232,0.18);
   }
   /* Framework labels on sidebar lesson buttons */
   .lesson-fw-dot {
     display: inline-block;
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
-    margin-left: 4px;
+    margin-left: 5px;
     vertical-align: middle;
+    box-shadow: 0 0 4px currentColor;
   }
-  .lesson-fw-dot.nist { background: #2E74B5; }
-  .lesson-fw-dot.mitre { background: #8060C0; }
+  .lesson-fw-dot.nist { background: #4A9FE8; color: #4A9FE8; }
+  .lesson-fw-dot.mitre { background: #A070E0; color: #A070E0; }
 </style>
 </head>
 <body>
@@ -3984,11 +4022,13 @@ function renderPage(mi, li, pi) {
     <div class="progress-bar" role="progressbar" aria-valuenow="${lessonPct}" aria-valuemin="0" aria-valuemax="100" aria-label="Lesson progress: ${lessonPct}% of module ${mi+1}"><div class="progress-fill" style="width:${lessonPct}%"></div></div>
     <div class="lesson-module">${L.module}</div>
     <h1 class="lesson-title">${L.title}</h1>
-    ${L.framework ? `<div class="framework-labels" aria-label="Framework mappings">${
-      (L.framework.nist || []).map(n => `<span class="fw-chip fw-nist" title="NIST Cybersecurity Framework">NIST ${n}</span>`).join('')
-    }${
-      (L.framework.mitre || []).map(m => `<span class="fw-chip fw-mitre" title="MITRE ATT&amp;CK">${m}</span>`).join('')
-    }</div>` : ''}
+    ${L.framework ? `<div class="framework-labels" aria-label="Framework mappings">
+      <div class="framework-labels-title">&#9632; Framework Alignment</div>${
+        (L.framework.nist || []).map(n => `<span class="fw-chip fw-nist" title="NIST Cybersecurity Framework">&#128737; NIST ${n}</span>`).join('')
+      }${
+        (L.framework.mitre || []).map(m => `<span class="fw-chip fw-mitre" title="MITRE ATT&amp;CK">&#127919; ${m}</span>`).join('')
+      }
+    </div>` : ''}
     <hr class="divider">
   `;
 
@@ -3999,6 +4039,24 @@ function renderPage(mi, li, pi) {
   if (page.exercises && page.exercises.length > 0) {
     html += '<span class="badge badge-exercise">Exercises</span>';
     page.exercises.forEach(ex => html += renderExercise(ex));
+  } else {
+    // Check if a LATER page in this lesson has exercises — show a nudge
+    const hasExercisesAhead = L.pages.slice(pi + 1).some(p => p.exercises && p.exercises.length > 0);
+    if (hasExercisesAhead) {
+      html += `
+        <div style="
+          margin: 24px 0 8px 0; padding: 14px 18px;
+          background: rgba(255,140,0,0.08); border: 1px solid rgba(255,140,0,0.3);
+          border-radius: 8px; display: flex; align-items: center; gap: 12px;
+        ">
+          <span style="font-size:1.4rem;">&#9654;</span>
+          <div>
+            <div style="font-size:0.85rem;font-weight:700;color:#FFB347;margin-bottom:2px;">Exercises ahead on the next page</div>
+            <div style="font-size:0.78rem;color:rgba(255,255,255,0.5);">Use the <strong style="color:#FF8C00;">&#9654; Run Query</strong> button to execute your SQL live against the training database. Hit &ldquo;Next&rdquo; below to continue.</div>
+          </div>
+        </div>
+      `;
+    }
   }
 
   // Page navigation
