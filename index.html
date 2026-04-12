@@ -402,6 +402,139 @@
     clip: rect(0,0,0,0); white-space: nowrap; border: 0;
   }
 
+  /* ============================================================
+     DASHBOARD STYLES
+     ============================================================ */
+  .db-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+  .db-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px; position: relative; overflow: hidden; transition: border-color 0.2s;
+  }
+  .db-card:hover { border-color: var(--teal); }
+  .db-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .db-card-teal::before { background: linear-gradient(90deg, var(--teal), var(--blue)); }
+  .db-card-gold::before { background: linear-gradient(90deg, var(--gold), #E8A030); }
+  .db-card-purple::before { background: linear-gradient(90deg, #C09FE8, #8060C0); }
+  .db-card-red::before { background: linear-gradient(90deg, var(--red), #D04040); }
+  .db-card-value { font-size: 2.4rem; font-weight: 800; color: var(--teal); line-height: 1; margin-bottom: 4px; }
+  .db-card-value.gold { color: var(--gold); }
+  .db-card-value.purple { color: #C09FE8; }
+  .db-card-value.red { color: var(--red); }
+  .db-card-label { font-size: 0.78rem; color: var(--muted); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+  .db-card-sub { font-size: 0.75rem; color: var(--muted); margin-top: 6px; }
+
+  .db-section-title {
+    font-size: 0.82rem; font-weight: 700; color: var(--muted);
+    letter-spacing: 1px; text-transform: uppercase;
+    margin: 28px 0 14px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .db-section-title span { color: var(--teal); }
+
+  /* XP BAR */
+  .xp-bar-wrap { background: var(--border); border-radius: 4px; height: 8px; margin-top: 10px; overflow: hidden; }
+  .xp-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold), #E8A030); border-radius: 4px; transition: width 0.6s ease; }
+  .xp-label { font-size: 0.72rem; color: var(--muted); margin-top: 4px; display: flex; justify-content: space-between; }
+
+  /* MODULE SKILL MAP */
+  .skill-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 24px; }
+  .skill-row { display: flex; align-items: center; gap: 12px; }
+  .skill-name { font-size: 0.82rem; color: var(--text); width: 180px; flex-shrink: 0; }
+  .skill-bar-wrap { flex: 1; background: var(--border); border-radius: 4px; height: 10px; overflow: hidden; position: relative; }
+  .skill-bar-fill { height: 100%; border-radius: 4px; transition: width 0.8s ease; }
+  .skill-pct { font-size: 0.75rem; color: var(--muted); width: 36px; text-align: right; flex-shrink: 0; }
+  .skill-stars { font-size: 0.8rem; width: 50px; text-align: right; flex-shrink: 0; }
+
+  /* NEXT LESSON CARD */
+  .next-lesson-card {
+    background: linear-gradient(135deg, rgba(0,201,167,0.08), rgba(46,116,181,0.08));
+    border: 1px solid rgba(0,201,167,0.25); border-radius: 10px;
+    padding: 20px 24px; margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .next-lesson-card:hover { border-color: var(--teal); background: rgba(0,201,167,0.12); }
+  .next-lesson-card h3 { font-size: 1rem; color: var(--text); margin-bottom: 4px; }
+  .next-lesson-card p { font-size: 0.82rem; color: var(--muted); }
+  .next-lesson-arrow { font-size: 1.8rem; color: var(--teal); flex-shrink: 0; }
+
+  /* ACHIEVEMENTS */
+  .achievement-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .achievement-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px 12px; text-align: center;
+    transition: all 0.2s; position: relative;
+  }
+  .achievement-card.unlocked { border-color: var(--gold); background: rgba(240,192,64,0.05); }
+  .achievement-card.locked { opacity: 0.45; filter: grayscale(0.6); }
+  .achievement-icon { font-size: 2rem; margin-bottom: 8px; display: block; }
+  .achievement-name { font-size: 0.78rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .achievement-desc { font-size: 0.7rem; color: var(--muted); line-height: 1.4; }
+  .achievement-card.unlocked .achievement-name { color: var(--gold); }
+  .achievement-new-badge {
+    position: absolute; top: -6px; right: -6px;
+    background: var(--teal); color: var(--bg);
+    font-size: 0.55rem; font-weight: 800; padding: 2px 6px;
+    border-radius: 8px; letter-spacing: 0.5px; text-transform: uppercase;
+  }
+
+  /* ACTIVITY FEED */
+  .activity-feed { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+  .activity-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 8px; font-size: 0.82rem;
+  }
+  .activity-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .activity-text { color: var(--text); flex: 1; }
+  .activity-time { color: var(--muted); font-size: 0.72rem; white-space: nowrap; }
+
+  /* SIDEBAR HOME BUTTON */
+  .sidebar-home-btn {
+    display: flex; align-items: center; gap: 10px;
+    width: 100%; padding: 14px 20px;
+    background: none; border: none; border-bottom: 1px solid var(--border);
+    color: var(--teal); text-align: left; cursor: pointer;
+    font-size: 0.88rem; font-weight: 700; letter-spacing: 0.5px;
+    transition: all 0.2s; margin-bottom: 8px;
+  }
+  .sidebar-home-btn:hover { background: rgba(0,201,167,0.08); }
+  .sidebar-home-btn.active { background: rgba(0,201,167,0.1); border-left: 3px solid var(--teal); }
+  .sidebar-home-icon { font-size: 1rem; }
+
+  /* XP chip in header */
+  .xp-chip {
+    font-size: 0.72rem; font-weight: 700; color: var(--gold);
+    background: rgba(240,192,64,0.1); border: 1px solid rgba(240,192,64,0.3);
+    padding: 3px 10px; border-radius: 12px; letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+
+  /* TOAST NOTIFICATION */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px; z-index: 600;
+    background: var(--card); border: 1px solid var(--teal);
+    border-radius: 10px; padding: 14px 18px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(0,201,167,0.15);
+    animation: toast-in 0.3s ease-out;
+    max-width: 320px;
+  }
+  .toast.toast-gold { border-color: var(--gold); box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(240,192,64,0.15); }
+  @keyframes toast-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .toast-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .toast-text strong { color: var(--teal); display: block; font-size: 0.88rem; }
+  .toast.toast-gold .toast-text strong { color: var(--gold); }
+  .toast-text span { color: var(--muted); font-size: 0.78rem; }
+
+  @media (max-width: 600px) {
+    .db-grid { grid-template-columns: repeat(2, 1fr); }
+    .skill-name { width: 120px; font-size: 0.75rem; }
+    .achievement-grid { grid-template-columns: repeat(2, 1fr); }
+    .next-lesson-card { flex-direction: column; align-items: flex-start; }
+  }
+
   /* FOCUS-VISIBLE UPGRADE — replaces Tier 1 :focus rules for mouse suppression */
   .module-btn:focus-visible,
   .lesson-btn:focus-visible,
@@ -442,6 +575,7 @@
     </div>
   </div>
   <div class="header-right">
+    <span class="xp-chip" id="xp-chip" title="Total XP earned">0 XP</span>
     <span class="header-progress" id="header-progress">0 / 17 lessons — 0% complete</span>
     <span class="save-indicator" id="save-indicator" aria-live="polite" aria-atomic="true">Progress saved</span>
     <button class="btn-reset" onclick="exportProgress()" title="Download your progress as JSON" aria-label="Download progress" style="border-color:var(--teal);color:var(--teal);">&#8615; Export</button>
@@ -3449,6 +3583,9 @@ function saveProgress() {
       completed: Array.from(completed),
       visitedPages: Array.from(visitedPages),
       exerciseState,
+      xp: totalXP,
+      achievements: Array.from(unlockedAchievements),
+      streak: existing.streak || 0,
       savedAt: Date.now(),
       lastSeenAt: Date.now(),
       welcomeSeen: existing.welcomeSeen === true
@@ -3480,6 +3617,9 @@ function loadProgress() {
     if (data.exerciseState && typeof data.exerciseState === 'object') {
       Object.keys(data.exerciseState).forEach(k => { exerciseState[k] = data.exerciseState[k]; });
     }
+    // Restore XP, achievements, and streak (Phase 2)
+    if (typeof data.xp === 'number') totalXP = data.xp;
+    if (Array.isArray(data.achievements)) data.achievements.forEach(id => unlockedAchievements.add(id));
     return true;
   } catch (e) {
     console.warn('Progress load failed:', e);
@@ -3826,7 +3966,9 @@ function switchModule(mi) {
 // SIDEBAR
 // ============================================================
 function buildSidebar() {
-  let html = '';
+  let html = `<button class="sidebar-home-btn" id="sb-home" onclick="goHome()" aria-label="Go to Dashboard">
+    <span class="sidebar-home-icon">&#9962;</span> Dashboard
+  </button>`;
   moduleNames.forEach((name, mi) => {
     html += `<button class="module-btn" onclick="switchModule(${mi})" aria-label="Jump to ${name}">${name}</button>`;
     lessonNames[mi].forEach((lname, li) => {
@@ -3854,6 +3996,295 @@ function updateSidebarDone() {
 }
 
 // ============================================================
+// XP & ACHIEVEMENT SYSTEM
+// ============================================================
+let totalXP = 0;
+const unlockedAchievements = new Set();
+
+const ACHIEVEMENTS = [
+  { id: 'first_query',    icon: '🔍', name: 'First Query',       desc: 'Submitted your first SQL answer',         xp: 10,  check: () => Object.values(exerciseState).some(s => s.attempts > 0) },
+  { id: 'first_pass',    icon: '✅', name: 'Clean Hit',          desc: 'Passed your first exercise correctly',     xp: 25,  check: () => Object.values(exerciseState).some(s => s.passed) },
+  { id: 'no_hints',      icon: '🧠', name: 'No Help Needed',     desc: 'Passed 3 exercises without using a hint',  xp: 75,  check: () => { let c=0; Object.values(exerciseState).forEach(s=>{ if(s.passed && s.attempts===1) c++; }); return c>=3; } },
+  { id: 'module1',       icon: '🛡️', name: 'SQL Fundamentals',   desc: 'Completed Module 1',                       xp: 100, check: () => completed.has('0-0') && completed.has('0-1') && completed.has('0-2') && completed.has('0-3') },
+  { id: 'module2',       icon: '🔗', name: 'Table Whisperer',    desc: 'Completed Module 2: Multi-Table Queries',   xp: 150, check: () => completed.has('1-0') && completed.has('1-1') && completed.has('1-2') && completed.has('1-3') },
+  { id: 'module3',       icon: '📊', name: 'Security Analyst',   desc: 'Completed Module 3: Security Analysis',     xp: 200, check: () => completed.has('2-0') && completed.has('2-1') && completed.has('2-2') && completed.has('2-3') },
+  { id: 'module4',       icon: '🕵️', name: 'Threat Hunter',      desc: 'Completed Module 4: Advanced SQL',          xp: 300, check: () => completed.has('3-0') && completed.has('3-1') && completed.has('3-2') && completed.has('3-3') && completed.has('3-4') },
+  { id: 'speed_run',     icon: '⚡', name: 'Speed Runner',       desc: 'Passed 5 exercises on the first attempt',   xp: 100, check: () => { let c=0; Object.values(exerciseState).forEach(s=>{ if(s.passed && s.attempts===1) c++; }); return c>=5; } },
+  { id: 'all_mastered',  icon: '🏆', name: 'SQL Master',         desc: 'Mastered every lesson in the course',       xp: 500, check: () => { updateMasteredSet(); return mastered.size >= 17; } },
+  { id: 'streak_3',      icon: '🔥', name: 'On Fire',            desc: 'Studied 3 days in a row',                   xp: 50,  check: () => getStreak() >= 3 },
+];
+
+function getStreak() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return 0;
+    const data = JSON.parse(raw);
+    return data.streak || 0;
+  } catch(e) { return 0; }
+}
+
+function awardXP(amount, reason) {
+  totalXP += amount;
+  updateXPChip();
+  showToast('⚡', `+${amount} XP`, reason || 'XP earned', false);
+  saveProgress();
+}
+
+function updateXPChip() {
+  const el = document.getElementById('xp-chip');
+  if (el) el.textContent = totalXP + ' XP';
+}
+
+function checkAchievements() {
+  const newlyUnlocked = [];
+  ACHIEVEMENTS.forEach(ach => {
+    if (!unlockedAchievements.has(ach.id) && ach.check()) {
+      unlockedAchievements.add(ach.id);
+      totalXP += ach.xp;
+      newlyUnlocked.push(ach);
+    }
+  });
+  if (newlyUnlocked.length > 0) {
+    updateXPChip();
+    saveProgress();
+    newlyUnlocked.forEach((ach, i) => {
+      setTimeout(() => showToast(ach.icon, ach.name + ' Unlocked!', ach.desc, true), i * 800);
+    });
+  }
+}
+
+let _toastTimer = null;
+function showToast(icon, title, subtitle, isGold) {
+  const existing = document.getElementById('sandbox-toast');
+  if (existing) existing.remove();
+  const el = document.createElement('div');
+  el.id = 'sandbox-toast';
+  el.className = 'toast' + (isGold ? ' toast-gold' : '');
+  el.innerHTML = `<div class="toast-icon">${icon}</div><div class="toast-text"><strong>${title}</strong><span>${subtitle}</span></div>`;
+  document.body.appendChild(el);
+  if (_toastTimer) clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(() => { if (el.parentNode) el.remove(); }, 3500);
+}
+
+// ============================================================
+// DASHBOARD RENDERER
+// ============================================================
+let onDashboard = false;
+
+function goHome() {
+  onDashboard = true;
+  closeSidebar();
+  document.querySelectorAll('.sidebar-home-btn').forEach(b => b.classList.add('active'));
+  document.querySelectorAll('.module-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.lesson-btn').forEach(b => b.classList.remove('active'));
+  renderDashboard();
+  window.scrollTo(0, 0);
+}
+
+function renderDashboard() {
+  updateMasteredSet();
+  const totalLessons = lessonNames.reduce((a, m) => a + m.length, 0);
+  const visitedCount = completed.size;
+  const masteredCount = mastered.size;
+  const overallPct = totalLessons > 0 ? Math.round((masteredCount / totalLessons) * 100) : 0;
+
+  // Count exercises
+  let totalEx = 0, passedEx = 0, revealedEx = 0;
+  for (const mod of lessons) {
+    for (const lesson of mod) {
+      for (const page of lesson.pages) {
+        if (page.exercises) {
+          page.exercises.forEach(ex => {
+            totalEx++;
+            const s = exerciseState[ex.id];
+            if (s && s.passed) passedEx++;
+            if (s && s.revealed && !s.passed) revealedEx++;
+          });
+        }
+      }
+    }
+  }
+
+  // XP level calculation
+  const XP_PER_LEVEL = 200;
+  const level = Math.floor(totalXP / XP_PER_LEVEL) + 1;
+  const xpInLevel = totalXP % XP_PER_LEVEL;
+  const xpPct = Math.round((xpInLevel / XP_PER_LEVEL) * 100);
+  const streak = getStreak();
+
+  // Find next unstarted lesson
+  let nextMi = -1, nextLi = -1;
+  outer: for (let mi = 0; mi < lessons.length; mi++) {
+    for (let li = 0; li < lessons[mi].length; li++) {
+      if (!completed.has(`${mi}-${li}`)) { nextMi = mi; nextLi = li; break outer; }
+    }
+  }
+
+  // Module skill map
+  const moduleSkills = moduleNames.map((name, mi) => {
+    const mLessons = lessonNames[mi].length;
+    let mMastered = 0;
+    for (let li = 0; li < mLessons; li++) {
+      if (mastered.has(`${mi}-${li}`)) mMastered++;
+    }
+    const pct = Math.round((mMastered / mLessons) * 100);
+    const colors = ['#00C9A7','#2E74B5','#F0C040','#C09FE8'];
+    return { name, pct, color: colors[mi], mMastered, mLessons };
+  });
+
+  // Recent activity from exerciseState
+  const recentActivity = [];
+  Object.entries(exerciseState).forEach(([id, s]) => {
+    if (s.passed) recentActivity.push({ icon: '✅', text: `Passed exercise <strong>${id}</strong>`, type: 'pass' });
+    else if (s.revealed) recentActivity.push({ icon: '👁️', text: `Revealed answer for <strong>${id}</strong>`, type: 'reveal' });
+  });
+  // Slice to last 5
+  const feed = recentActivity.slice(-5).reverse();
+
+  // Achievements row
+  const achievementHTML = ACHIEVEMENTS.map(ach => {
+    const unlocked = unlockedAchievements.has(ach.id);
+    return `<div class="achievement-card ${unlocked ? 'unlocked' : 'locked'}" title="${ach.desc}">
+      <span class="achievement-icon">${ach.icon}</span>
+      <div class="achievement-name">${ach.name}</div>
+      <div class="achievement-desc">${unlocked ? ach.desc : '???' }</div>
+      ${unlocked ? '' : `<div class="achievement-desc" style="margin-top:4px;color:var(--teal);font-size:0.68rem;">+${ach.xp} XP on unlock</div>`}
+    </div>`;
+  }).join('');
+
+  // Stars helper
+  const stars = (pct) => {
+    if (pct >= 100) return '★★★';
+    if (pct >= 60) return '★★☆';
+    if (pct > 0) return '★☆☆';
+    return '☆☆☆';
+  };
+
+  const nextCard = nextMi >= 0
+    ? `<div class="next-lesson-card" onclick="goPage(${nextMi},${nextLi},0)" role="button" tabindex="0"
+        onkeydown="if(event.key==='Enter'){goPage(${nextMi},${nextLi},0);}">
+        <div>
+          <p style="font-size:0.72rem;color:var(--teal);font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:6px;">▶ Continue Learning</p>
+          <h3>${lessonNames[nextMi][nextLi]}</h3>
+          <p>${moduleNames[nextMi]} &bull; <span style="color:var(--${lessonDifficulty[nextMi][nextLi]==='beginner'?'green':lessonDifficulty[nextMi][nextLi]==='intermediate'?'gold':lessonDifficulty[nextMi][nextLi]==='advanced'?'red':'purple'});">${DIFFICULTY_LABELS[lessonDifficulty[nextMi][nextLi]]}</span></p>
+        </div>
+        <div class="next-lesson-arrow">&#8594;</div>
+      </div>`
+    : `<div class="next-lesson-card" style="cursor:default;">
+        <div><h3>🏆 Course Complete!</h3><p>You've visited all lessons. Keep mastering exercises to hit 100%.</p></div>
+      </div>`;
+
+  const feedHTML = feed.length > 0
+    ? feed.map(a => `<div class="activity-item"><div class="activity-icon">${a.icon}</div><div class="activity-text">${a.text}</div></div>`).join('')
+    : '<div class="activity-item"><div class="activity-icon">👋</div><div class="activity-text">No activity yet — start a lesson!</div></div>';
+
+  const html = `
+    <div style="max-width:900px;">
+      <div style="margin-bottom:28px;">
+        <h1 style="font-size:1.8rem;font-weight:800;color:var(--text);margin-bottom:4px;">&#9962; Dashboard</h1>
+        <p style="color:var(--muted);font-size:0.9rem;">SQL Security Sandbox &mdash; Cosmic Innovators Collective</p>
+      </div>
+
+      <div class="db-section-title"><span>&#9642;</span> Overview</div>
+      <div class="db-grid">
+        <div class="db-card db-card-teal">
+          <div class="db-card-value">${masteredCount}</div>
+          <div class="db-card-label">Lessons Mastered</div>
+          <div class="db-card-sub">of ${totalLessons} total &bull; ${visitedCount} visited</div>
+          <div class="xp-bar-wrap" style="margin-top:10px;"><div class="progress-fill" style="width:${overallPct}%;height:100%;"></div></div>
+          <div class="xp-label"><span>Progress</span><span>${overallPct}%</span></div>
+        </div>
+        <div class="db-card db-card-gold">
+          <div class="db-card-value gold">${totalXP}</div>
+          <div class="db-card-label">Total XP &mdash; Level ${level}</div>
+          <div class="db-card-sub">Next level at ${level * XP_PER_LEVEL} XP</div>
+          <div class="xp-bar-wrap"><div class="xp-bar-fill" style="width:${xpPct}%;"></div></div>
+          <div class="xp-label"><span>${xpInLevel} / ${XP_PER_LEVEL} XP</span><span>Lv ${level+1}</span></div>
+        </div>
+        <div class="db-card db-card-teal">
+          <div class="db-card-value">${passedEx}</div>
+          <div class="db-card-label">Exercises Passed</div>
+          <div class="db-card-sub">of ${totalEx} total &bull; ${revealedEx} revealed</div>
+        </div>
+        <div class="db-card db-card-purple">
+          <div class="db-card-value purple">${unlockedAchievements.size}</div>
+          <div class="db-card-label">Achievements</div>
+          <div class="db-card-sub">of ${ACHIEVEMENTS.length} available</div>
+        </div>
+      </div>
+
+      ${nextCard}
+
+      <div class="db-section-title"><span>&#9642;</span> Skill Map</div>
+      <div class="skill-grid">
+        ${moduleSkills.map(s => `
+          <div class="skill-row">
+            <div class="skill-name">${s.name.replace(/Module \d+: /, '')}</div>
+            <div class="skill-bar-wrap"><div class="skill-bar-fill" style="width:${s.pct}%;background:${s.color};"></div></div>
+            <div class="skill-pct" style="color:${s.color};">${s.pct}%</div>
+            <div class="skill-stars" style="color:${s.color};">${stars(s.pct)}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="db-section-title"><span>&#9642;</span> Achievements</div>
+      <div class="achievement-grid">${achievementHTML}</div>
+
+      <div class="db-section-title"><span>&#9642;</span> Recent Activity</div>
+      <div class="activity-feed">${feedHTML}</div>
+
+      <div class="db-section-title"><span>&#9642;</span> All Lessons</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:32px;">
+        ${moduleNames.map((mname, mi) =>
+          lessonNames[mi].map((lname, li) => {
+            const isM = mastered.has(`${mi}-${li}`);
+            const isC = completed.has(`${mi}-${li}`);
+            const diff = lessonDifficulty[mi][li];
+            const diffColor = diff==='beginner'?'var(--green)':diff==='intermediate'?'var(--gold)':diff==='advanced'?'var(--red)':'var(--purple)';
+            return `<button onclick="goPage(${mi},${li},0)" style="
+              background:var(--card);border:1px solid ${isM?'var(--teal)':isC?'var(--border)':'var(--border)'};
+              border-radius:8px;padding:12px 14px;text-align:left;cursor:pointer;
+              color:var(--text);font-size:0.8rem;transition:all 0.2s;
+              border-left:3px solid ${isM?'var(--teal)':isC?'var(--blue)':'var(--border)'};
+            " onmouseover="this.style.borderColor='var(--teal)'" onmouseout="this.style.borderColor='${isM?'var(--teal)':isC?'var(--blue)':'var(--border)'}'">
+              <div style="font-size:0.68rem;color:var(--muted);margin-bottom:4px;">${mname}</div>
+              <div style="font-weight:600;margin-bottom:6px;">${isM?'✅ ':isC?'👁 ':''}${lname}</div>
+              <span style="font-size:0.65rem;font-weight:700;color:${diffColor};text-transform:uppercase;letter-spacing:0.4px;">${DIFFICULTY_LABELS[diff]}</span>
+            </button>`;
+          }).join('')
+        ).join('')}
+      </div>
+
+      <div class="footer">&copy; ${new Date().getFullYear()} Cosmic Innovators Collective | Building Digital Guardians</div>
+    </div>
+  `;
+  document.getElementById('main-content').innerHTML = html;
+}
+
+// ============================================================
+// PATCH submitAnswer to award XP and check achievements
+// ============================================================
+const _origSubmitAnswer = submitAnswer;
+submitAnswer = function(exId) {
+  const stBefore = exerciseState[exId] ? { ...exerciseState[exId] } : null;
+  _origSubmitAnswer(exId);
+  const stAfter = exerciseState[exId];
+  if (stAfter && stAfter.passed && (!stBefore || !stBefore.passed)) {
+    awardXP(25, 'Exercise passed!');
+    checkAchievements();
+  }
+};
+
+// Patch goPage: clear dashboard state + close mobile sidebar
+const origGoPage = goPage;
+goPage = function(mi, li, pi) {
+  onDashboard = false;
+  document.querySelectorAll('.sidebar-home-btn').forEach(b => b.classList.remove('active'));
+  closeSidebar();
+  origGoPage(mi, li, pi);
+};
+
+// ============================================================
 // MOBILE SIDEBAR TOGGLE
 // ============================================================
 function toggleSidebar() {
@@ -3872,12 +4303,6 @@ function closeSidebar() {
   backdrop.classList.remove('visible');
   if (toggle) toggle.setAttribute('aria-expanded', 'false');
 }
-// Close sidebar when a lesson is selected on mobile
-const origGoPage = goPage;
-goPage = function(mi, li, pi) {
-  closeSidebar();
-  origGoPage(mi, li, pi);
-};
 
 // ============================================================
 // MASTERED LESSONS TRACKING (exercises passed vs pages visited)
@@ -3960,6 +4385,7 @@ if ('serviceWorker' in navigator) {
 // INIT
 // ============================================================
 loadProgress();
+updateXPChip(); // restore XP display from saved state
 buildSidebar();
 renderPage(currentModule, currentLesson, currentPage);
 showWelcome();
