@@ -1,133 +1,137 @@
-# SQL Security Sandbox — Interactive Cybersecurity SQL Training
+# ✦ SQL Security Sandbox
 
-> **Cosmic Innovators Collective** — Building Digital Guardians
+Interactive SQL training for cybersecurity analysts — from `SELECT` to building a working impossible-travel detector.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-success)](https://cjsmith605.github.io/sql-security-sandbox/)
+[![Deploy to GitHub Pages](https://github.com/cjsmith605/sql-security-sandbox/actions/workflows/deploy.yml/badge.svg)](https://github.com/cjsmith605/sql-security-sandbox/actions/workflows/deploy.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
----
+**[Launch the Sandbox →](https://cjsmith605.github.io/sql-security-sandbox/)**
 
-## Try the Free Demo
+## The Problem
 
-**[Launch Demo →](https://cjsmith605.github.io/sql-security-sandbox/)**
+Cybersecurity analysts need SQL fluency to investigate incidents, hunt threats, and audit access — but most SQL courses teach with generic business data. There's no bridge between "learn SQL" and "use SQL to catch attackers."
 
-The free demo includes **Module 1: SQL Fundamentals** — 4 fully interactive lessons with a live SQL query engine, XP tracking, and a module challenge. No sign-up required, runs entirely in your browser.
+## The Solution
 
-| What You Get (Demo) | What's in the Full Version |
-|---|---|
-| Module 1: SQL Fundamentals (4 lessons) | All 4 Modules, 17 Lessons |
-| Live SQL query engine against training DB | Same — plus advanced multi-table DB |
-| XP system + achievements | Full XP system, all 10 achievements |
-| NIST & MITRE framework labels | Full framework coverage mapping |
-| — | Module 2: Multi-Table Queries & JOINs |
-| — | Module 3: Security Analysis & Incident Response |
-| — | Module 4: Advanced SQL — Window Functions, CTEs |
-| — | Capstone: Build an impossible-travel detector |
-| — | Certificate of Completion |
+SQL Security Sandbox teaches SQL through a **realistic cybersecurity investigation narrative**. You play as a junior SOC analyst investigating suspicious authentication activity in your company's logs. Each lesson builds on the last, culminating in a working **impossible-travel detector** that identifies compromised accounts logging in from distant locations within impossible timeframes.
 
----
+## The Impact
 
-## Get the Full Version
+- **17 lessons** across 4 progressive modules
+- **60+ hands-on exercises** with hints, feedback, and full explanations
+- **Zero dependencies** — one HTML file, no server, no install, no account
+- **Offline-capable PWA** — install it and use it anywhere
+- **WCAG-accessible** — keyboard navigation, screen reader support, reduced-motion support
 
-The complete SQL Security Sandbox includes **all 4 modules** (17 lessons), challenge labs, the full training database, and a certificate of completion.
+## Quick Start
 
-**[Purchase on Gumroad →](https://gumroad.com)**
+**Option 1 — Use it online:**
+Visit [cjsmith605.github.io/sql-security-sandbox](https://cjsmith605.github.io/sql-security-sandbox/)
 
-One-time purchase · Instant download · Lifetime updates
+**Option 2 — Download and run locally:**
+```bash
+git clone https://github.com/cjsmith605/sql-security-sandbox.git
+cd sql-security-sandbox
+open index.html      # macOS
+start index.html     # Windows
+xdg-open index.html  # Linux
+```
 
----
+**Option 3 — Install as PWA:**
+Visit the live site in Chrome/Edge → click the install icon in the address bar → runs offline like a native app.
 
-## What Is This?
+No server. No login. No build step. Open the file and start hunting threats.
 
-The SQL Security Sandbox is an interactive, narrative-driven training program that teaches SQL through a real cybersecurity investigation. You play an analyst investigating suspicious login activity — starting with basic `SELECT` statements and progressing through JOINs, aggregation, window functions, CTEs, and ultimately building a working impossible-travel detector.
+## Curriculum
 
-### Key Features
+| Module | Focus | Lessons | Difficulty |
+|--------|-------|---------|------------|
+| 1: SQL Fundamentals | SELECT, FROM, WHERE, ORDER BY, LIMIT | 3 | 🟢 Beginner |
+| 2: Filtering & Aggregation | AND/OR, wildcards, GROUP BY, HAVING, COUNT/SUM/AVG | 5 | 🟡 Intermediate |
+| 3: Joins & Subqueries | INNER JOIN, LEFT JOIN, subqueries, multi-table analysis | 5 | 🟠 Advanced |
+| 4: Window Functions & CTEs | OVER(), LAG(), LEAD(), WITH, impossible-travel detection | 4 | 🔴 Expert |
 
-- **Zero-install, single-file app** — one HTML file, no server, no dependencies, runs offline
-- **Live SQL engine** — sql.js (SQLite compiled to WASM) executes your queries against a realistic training database
-- **Narrative-driven** — every lesson advances the investigation, not just isolated exercises
-- **XP & achievements** — gamified progression with 10 unlockable achievements
-- **NIST & MITRE mapping** — every lesson tagged with real framework controls (NIST CSF, MITRE ATT&CK)
-- **Dashboard** — track progress, XP level, framework coverage, and next steps
-- **PWA ready** — installable, works offline after first load
+Each lesson includes:
+- Narrative context (you're investigating a real security incident)
+- Syntax demonstrations with live-highlighted code blocks
+- Interactive exercises with regex-based validation
+- Hints, answer reveals, and detailed explanations
 
-### Training Database
+## Architecture
 
-The sandbox includes a 4-table training database seeded automatically on first query:
+```
+sql-security-sandbox/
+├── index.html          # The entire application (single-file, zero-dependency)
+├── manifest.json       # PWA web app manifest
+├── sw.js               # Service worker for offline caching
+├── assets/             # Icons and images
+├── LICENSE             # MIT License
+├── SECURITY.md         # Security policy and vulnerability reporting
+├── PRIVACY.md          # Privacy notice (local-first, no data collection)
+├── CONTRIBUTING.md     # Contribution guidelines
+└── .github/
+    └── workflows/
+        └── deploy.yml  # CI: validate + auto-deploy to GitHub Pages
+```
 
-| Table | Purpose | Records |
-|---|---|---|
-| `auth_log` | Authentication events (logins, failures, privilege changes) | 30 |
-| `users` | Employee directory (department, role, status) | 20 |
-| `ip_watchlist` | Threat intelligence — flagged IPs with risk tiers | 15 |
-| `cloud_auth_log` | Multi-region cloud auth events for travel analysis | 20 |
+## Design Decisions
 
----
+| Decision | Rationale |
+|----------|-----------|
+| Single HTML file | Maximum portability — download one file, open in any browser |
+| Vanilla JS, no frameworks | Zero supply-chain risk, no build step, instant load |
+| localStorage persistence | Progress saves automatically, no account required |
+| Regex-based answer checker | Dependency-free validation that works offline |
+| Dark theme | Matches the "terminal/SOC analyst" aesthetic; reduces eye strain |
+| CSS custom properties | Consistent theming, easy to customize or white-label |
 
-## For Employers
+## Key Features
 
-This project demonstrates:
+- **Live syntax-highlighted SQL editor** — token-based highlighter with keyword, function, string, number, and comment coloring
+- **Responsive layout** — collapsible sidebar on mobile, optimized for phones, tablets, and desktops
+- **Progress tracking** — separate "visited" vs "mastered" metrics; mastery requires passing all exercises
+- **Progress export** — download your completion data as JSON for portfolio evidence
+- **Welcome modal with resume** — returning users see their stats and can continue where they left off
+- **PWA installable** — works offline with service worker caching
+- **Accessibility** — skip link, ARIA roles, keyboard focus management, prefers-reduced-motion support, screen reader labels on all editors
 
-- **Cybersecurity knowledge** — NIST CSF, MITRE ATT&CK, SOC analyst workflows, incident response
-- **SQL proficiency** — SELECT, JOINs, aggregation, window functions, CTEs, subqueries
-- **Software engineering** — single-file architecture, vanilla JS, WASM integration, CSP configuration, PWA, localStorage persistence
-- **Instructional design** — scaffolded curriculum, narrative engagement, gamified progression
+## Security Framework Alignment
 
----
-
-## For Organizations
-
-Looking to train your team? The SQL Security Sandbox can be deployed as an internal training tool with:
-
-- SCORM/xAPI integration for your LMS
-- Custom branding and database scenarios
-- Admin dashboards and completion tracking
-- Volume licensing
-
-**Contact:** cjsmith605@gmail.com
-
----
-
-## Technical Architecture
-
-| Property | Detail |
-|---|---|
-| File | Single HTML file (`index.html` = public demo, full version sold via Gumroad) |
-| JS | Vanilla JavaScript — no frameworks, no build step |
-| SQL Engine | sql.js 1.12.0 (SQLite WASM) loaded from CDN |
-| Persistence | `localStorage` (key: `cic_sql_sandbox_progress_v1`) |
-| Theming | CSS custom properties — dark cybersecurity aesthetic |
-| CSP | Configured for cdnjs.cloudflare.com (script-src, connect-src, worker-src) |
-| PWA | Service worker + manifest for offline use |
-
----
-
-## File Guide
-
-| File | Description |
-|---|---|
-| `index.html` | **Free demo** — Module 1 only, with upgrade CTAs (public, GitHub Pages) |
-| `sql-security-sandbox-FULL-VERSION.html` | **Full version** — all 4 modules, 17 lessons (sold via Gumroad, not in repo) |
-| `AGENT_HANDOFF.md` | Development handoff file for AI agents (Perplexity Computer / Claude) |
-| `README.md` | This file |
-| `sw.js` | Service worker for PWA offline caching |
-| `manifest.json` | PWA manifest |
-
----
+| Sandbox Module | NIST CSF 2.0 | SOC 2 Trust Principle |
+|---------------|--------------|----------------------|
+| Auth Log Analysis | Detect: Continuous Monitoring (DE.CM) | Security (Access Controls) |
+| Filtering & Aggregation | Detect: Anomalies & Events (DE.AE) | Security (Threat Detection) |
+| Multi-table Joins | Protect: Data Security (PR.DS) | Confidentiality (Data Isolation) |
+| Impossible Travel Detection | Respond: Analysis (RS.AN) | Security (Incident Response) |
 
 ## Roadmap
 
-| Phase | Status | Scope |
-|---|---|---|
-| Phase 1 | ✅ Complete | GitHub-ready portfolio polish, SEO, PWA |
-| Phase 2 | ✅ Complete | Dashboard, XP system, sql.js query engine, NIST/MITRE labels |
-| Phase 3 | ⏳ Next | PDF lab reports, certificates, Gumroad payment integration, SCORM |
-| Phase 4 | ⏳ Planned | Texas DIR cert, xAPI, Open Badges, admin dashboard, Teachable course |
+- **Phase 2:** Real SQL execution engine (SQLite/WASM) for advanced modules
+- **Phase 2:** PDF lab report export and completion certificates
+- **Phase 3:** SCORM packaging for enterprise LMS integration
+- **Phase 3:** Freemium model with gated content (Modules 3–4)
+- **Phase 4:** Texas DIR certification for government training
+- **Phase 4:** Open Badges 3.0 verifiable credentials
 
----
+## Recording a Demo GIF
+
+Haven't captured a demo yet? Here's how:
+
+1. Open `index.html` in a browser, sized comfortably (1200px+ wide)
+2. macOS: QuickTime Player → File → New Screen Recording → select the lesson area
+3. Record ~10 seconds: type a query, click Submit, see the "Correct!" feedback
+4. Export as `.mov`, convert to `.gif` with [ezgif.com](https://ezgif.com/video-to-gif)
+5. Save as `assets/demo.gif` and add `![Demo](./assets/demo.gif)` to this README
+
+For a static screenshot: `assets/screenshot.png` (used as the `og:image` meta tag).
+
+## Author
+
+Christopher Smith — [GitHub](https://github.com/cjsmith605)
+
+Part of the [Cosmic Innovators Collective](https://github.com/cjsmith605) training initiative.  
+Built in Dallas-Fort Worth, Texas. Designed for the next generation of security professionals.
 
 ## License
 
-MIT — see [LICENSE](LICENSE)
-
-**© 2026 Cosmic Innovators Collective**
+[MIT](./LICENSE) — free to use, modify, and distribute.

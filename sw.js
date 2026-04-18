@@ -31,7 +31,11 @@ self.addEventListener('fetch', event => {
       if (cached) return cached;
       return fetch(event.request).then(response => {
         // Cache successful same-origin GET requests
-        if (response.ok && event.request.method === 'GET' && event.request.url.startsWith(self.location.origin)) {
+        if (
+          response.ok &&
+          event.request.method === 'GET' &&
+          event.request.url.startsWith(self.location.origin)
+        ) {
           const clone = response.clone();
           caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
         }

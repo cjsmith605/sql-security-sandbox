@@ -25,9 +25,7 @@ If you discover a security vulnerability, please report it responsibly:
 2. **Subject line:** `[SECURITY] SQL Security Sandbox — <brief description>`
 3. **Include:** Steps to reproduce, impact assessment, and suggested fix if possible
 
-Please do **not** open a public GitHub issue for security vulnerabilities.
-
-I will acknowledge receipt within 48 hours and provide an estimated timeline for a fix.
+Please do **not** open a public GitHub issue for security vulnerabilities. I will acknowledge receipt within 48 hours and provide an estimated timeline for a fix.
 
 ## Scope
 

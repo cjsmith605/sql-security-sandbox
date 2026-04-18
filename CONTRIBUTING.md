@@ -5,17 +5,20 @@ Thank you for your interest in contributing to the SQL Security Sandbox. This pr
 ## How to Contribute
 
 ### Reporting Bugs
+
 - Open a [GitHub Issue](../../issues) with a clear title and description
 - Include your browser name/version and OS
 - Describe the expected vs. actual behavior
 - Screenshots or screen recordings are welcome
 
 ### Suggesting Features
+
 - Open a [GitHub Issue](../../issues) with the label `enhancement`
 - Describe the use case and how it benefits learners
 - Reference any relevant cybersecurity frameworks (NIST, MITRE ATT&CK) if applicable
 
 ### Submitting Code Changes
+
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/your-feature-name`)
 3. Make your changes to `index.html` or companion files
@@ -26,7 +29,9 @@ Thank you for your interest in contributing to the SQL Security Sandbox. This pr
 8. Push and open a Pull Request
 
 ### Content Contributions
+
 If you'd like to contribute new lessons or exercises:
+
 - Follow the existing lesson data structure in the `lessons` array
 - Include at least 2 exercises per lesson page
 - Write regex checks that validate the key SQL concepts, not exact syntax
@@ -34,6 +39,7 @@ If you'd like to contribute new lessons or exercises:
 - Map the lesson to a NIST CSF 2.0 function if applicable
 
 ## Code Style
+
 - This project intentionally uses **vanilla JavaScript** — no frameworks, no build step
 - Keep the single-file architecture for `index.html`
 - Use CSS custom properties (variables) defined in `:root`
@@ -41,4 +47,5 @@ If you'd like to contribute new lessons or exercises:
 - Escape all user-controlled strings before any `innerHTML` write
 
 ## Code of Conduct
+
 Be respectful, constructive, and professional. Discrimination, harassment, and bad-faith contributions will not be tolerated.

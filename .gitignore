@@ -12,5 +12,5 @@ Thumbs.db
 # Node (if build tooling added later)
 node_modules/
 
-# Full version — distributed via Gumroad, not public
-index.html
+# Full version — distributed via Gumroad, never committed to public repo
+sql-security-sandbox-FULL-VERSION.html

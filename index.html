@@ -105,7 +105,7 @@
   .kw { color: #FF79C6; font-weight: bold; }
   .str { color: #F1FA8C; }
   .num { color: #BD93F9; }
-  .cm { color: #6272A4; }
+  .cm { color: #7A8DB8; }
   .fn { color: #50FA7B; }
 
   /* DATA TABLES */
@@ -141,7 +141,7 @@
   .editor-highlight .hl-str { color: #F1FA8C; }
   .editor-highlight .hl-num { color: #BD93F9; }
   .editor-highlight .hl-txt { color: #FFFFFF; }
-  .editor-highlight .hl-cm { color: #6272A4; font-style: italic; }
+  .editor-highlight .hl-cm { color: #7A8DB8; font-style: italic; }
 
   /* EXERCISE BOX */
   .exercise-box { background: rgba(255,120,80,0.05); border: 1px solid rgba(255,120,80,0.2); border-radius: 10px; padding: 20px; margin-top: 10px; }
@@ -168,7 +168,7 @@
 
   /* BUTTONS */
   .btn { padding: 9px 20px; border-radius: 6px; cursor: pointer; font-size: 0.88rem; font-weight: 600; transition: all 0.2s; border: 1px solid transparent; margin-right: 8px; margin-top: 8px; }
-  .btn-submit { background: linear-gradient(135deg, var(--teal), var(--blue)); color: #fff; border: none; }
+  .btn-submit { background: linear-gradient(135deg, var(--teal), var(--blue)); color: #0F1923; border: none; }
   .btn-submit:hover { opacity: 0.9; }
   .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
   .btn-hint { background: rgba(240,192,64,0.15); border-color: rgba(240,192,64,0.3); color: var(--gold); }
@@ -198,18 +198,21 @@
   .module-btn:focus,
   .lesson-btn:focus,
   .btn:focus,
+  .btn-run:focus,
   .btn-page:focus,
   .btn-page-prev:focus,
   .btn-page-next:focus,
   .btn-page-module:focus,
   .btn-reset:focus,
   .page-dot:focus,
+  .sidebar-home-btn:focus,
+  .next-lesson-card:focus,
   a:focus {
     outline: 2px solid var(--teal);
     outline-offset: 2px;
   }
 
-  .footer { text-align: center; color: var(--border); font-size: 0.78rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+  .footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
 
   /* SKIP LINK — visually hidden until focused by keyboard */
   .skip-link {
@@ -554,24 +557,32 @@
   .module-btn:focus-visible,
   .lesson-btn:focus-visible,
   .btn:focus-visible,
+  .btn-run:focus-visible,
   .btn-page:focus-visible,
   .btn-page-prev:focus-visible,
   .btn-page-next:focus-visible,
   .btn-page-module:focus-visible,
   .btn-reset:focus-visible,
   .page-dot:focus-visible,
+  .sidebar-home-btn:focus-visible,
+  .next-lesson-card:focus-visible,
   .btn-welcome-primary:focus-visible,
   .btn-welcome-secondary:focus-visible,
   a:focus-visible {
     outline: 2px solid var(--teal);
     outline-offset: 2px;
   }
+  /* Universal focus-visible safety net for unstyled buttons (BUG-012) */
+  button:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
   /* Suppress plain :focus outline for mouse clicks */
   .module-btn:focus:not(:focus-visible),
   .lesson-btn:focus:not(:focus-visible),
   .btn:focus:not(:focus-visible),
+  .btn-run:focus:not(:focus-visible),
   .btn-page:focus:not(:focus-visible),
   .btn-reset:focus:not(:focus-visible),
+  .sidebar-home-btn:focus:not(:focus-visible),
+  .next-lesson-card:focus:not(:focus-visible),
   .page-dot:focus:not(:focus-visible) {
     outline: none;
   }
@@ -713,6 +724,12 @@
     color: #D4BAFF;
     box-shadow: 0 0 8px rgba(192,159,232,0.18);
   }
+  .fw-pci {
+    background: rgba(255,128,128,0.15);
+    border: 1px solid var(--red);
+    color: var(--red);
+    box-shadow: 0 0 8px rgba(255,128,128,0.18);
+  }
   /* Framework labels on sidebar lesson buttons */
   .lesson-fw-dot {
     display: inline-block;
@@ -725,6 +742,7 @@
   }
   .lesson-fw-dot.nist { background: #4A9FE8; color: #4A9FE8; }
   .lesson-fw-dot.mitre { background: #A070E0; color: #A070E0; }
+  .lesson-fw-dot.pci { background: var(--red); color: var(--red); }
 </style>
 </head>
 <body>
@@ -830,6 +848,13 @@ function setupEditor(id) {
   input.addEventListener('focus', () => wrap.classList.add('focused'));
   input.addEventListener('blur', () => wrap.classList.remove('focused'));
   input.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      // BUG-004: Allow Escape to exit the editor and focus Submit button
+      input.blur();
+      const submitBtn = document.getElementById('submit-btn-' + id);
+      if (submitBtn) submitBtn.focus();
+      return;
+    }
     if (e.key === 'Tab') {
       e.preventDefault();
       const s = input.selectionStart, end = input.selectionEnd;
@@ -940,7 +965,7 @@ const lessons = [
     {
       module: "Module 1: SQL Fundamentals",
       title: "SELECT & FROM \u2014 Your First Query",
-      framework: { nist: ['DE.AE-1','DE.CM-7'], mitre: ['T1078 • Valid Accounts','T1133 • External Remote Services'] },
+      framework: { nist: ['DE.AE-1','DE.CM-7'], mitre: ['T1078 • Valid Accounts','T1133 • External Remote Services'], pci: ['Req 6'] },
       pages: [
         // ---- PAGE 1: What Is SQL? (no exercises — pure intro) ----
         {
@@ -1163,7 +1188,7 @@ const lessons = [
     {
       module: "Module 1: SQL Fundamentals",
       title: "WHERE \u2014 Filtering Your Results",
-      framework: { nist: ['DE.AE-3','DE.CM-1'], mitre: ['T1110 • Brute Force','T1087 • Account Discovery'] },
+      framework: { nist: ['DE.AE-3','DE.CM-1'], mitre: ['T1110 • Brute Force','T1087 • Account Discovery'], pci: ['Req 6'] },
       pages: [
         // ---- PAGE 1: Introduction to WHERE ----
         {
@@ -1482,7 +1507,7 @@ const lessons = [
     {
       module: "Module 1: SQL Fundamentals",
       title: "ORDER BY & LIMIT \u2014 Sorting & Controlling Output",
-      framework: { nist: ['DE.AE-2','RS.AN-1'], mitre: ['T1071 • Application Layer Protocol','T1499 • Endpoint DoS'] },
+      framework: { nist: ['DE.AE-2','RS.AN-1'], mitre: ['T1071 • Application Layer Protocol','T1499 • Endpoint DoS'], pci: ['Req 6'] },
       pages: [
         // ---- PAGE 1: ORDER BY Basics ----
         {
@@ -1704,7 +1729,7 @@ const lessons = [
     {
       module: "Module 1: SQL Fundamentals",
       title: "\u2694\uFE0F Module Challenge \u2014 Incident First Response",
-      framework: { nist: ['RS.AN-1','RS.AN-2','DE.AE-3'], mitre: ['T1110 • Brute Force','T1078 • Valid Accounts'] },
+      framework: { nist: ['RS.AN-1','RS.AN-2','DE.AE-3'], mitre: ['T1110 • Brute Force','T1078 • Valid Accounts'], pci: ['Req 6'] },
       pages: [
         {
           sections: [
@@ -2045,6 +2070,7 @@ function showWelcome() {
     </div>
   `;
   document.body.appendChild(overlay);
+  trapFocus(overlay); // BUG-002: focus trap
   // Focus the primary button for keyboard users
   setTimeout(() => {
     const firstBtn = overlay.querySelector('.btn-welcome-primary');
@@ -2107,6 +2133,7 @@ function renderExercise(ex) {
         <button class="btn btn-hint" id="hint-btn-${ex.id}" style="display:none;" onclick="showHint('${ex.id}')" aria-label="Show hint for ${ex.label}">Hint</button>
         <button class="btn btn-show" onclick="revealAnswer('${ex.id}')" aria-label="Reveal answer for ${ex.label}">Show Answer</button>
       </div>
+      <div style="font-size:0.72rem;color:var(--muted);margin-top:4px;padding-left:2px;" aria-label="Validation note">&#9432; We validate query intent and key clauses, not exact syntax. If your result looks right but the check fails, try matching the hint format.</div>
       <div class="feedback-box" id="feedback-${ex.id}"></div>
       <div class="sql-result-wrap" id="sql-result-${ex.id}" aria-live="polite">
         <div id="sql-result-body-${ex.id}"></div>
@@ -2141,6 +2168,8 @@ function renderPage(mi, li, pi) {
         (L.framework.nist || []).map(n => `<span class="fw-chip fw-nist" title="NIST Cybersecurity Framework">&#128737; NIST ${n}</span>`).join('')
       }${
         (L.framework.mitre || []).map(m => `<span class="fw-chip fw-mitre" title="MITRE ATT&amp;CK">&#127919; ${m}</span>`).join('')
+      }${
+        (L.framework.pci || []).map(p => `<span class="fw-chip fw-pci" title="PCI-DSS v4.0">&#128274; PCI ${p}</span>`).join('')
       }
     </div>` : ''}
     <hr class="divider">
@@ -2180,6 +2209,12 @@ function renderPage(mi, li, pi) {
 
   document.getElementById('main-content').innerHTML = html;
   window.scrollTo(0, 0);
+
+  // BUG-003: Move focus to lesson title for screen reader announcement
+  setTimeout(() => {
+    const title = document.querySelector('.lesson-title');
+    if (title) { title.setAttribute('tabindex', '-1'); title.focus(); }
+  }, 100);
 
   // Initialize editors and restore prior exercise state (if any)
   if (page.exercises) {
@@ -2297,8 +2332,8 @@ function buildSidebar() {
       const badge = `<span class="diff-badge diff-${diff}" aria-label="Difficulty: ${diffLabel}">${diffLabel}</span>`;
       const fw = lessons[mi][li].framework;
       const fwDots = fw ? [
-        fw.nist && fw.nist.length ? '<span class="lesson-fw-dot nist" title="NIST CSF mapped"></span>' : '',
-        fw.mitre && fw.mitre.length ? '<span class="lesson-fw-dot mitre" title="MITRE ATT&amp;CK mapped"></span>' : ''
+        fw.nist && fw.nist.length ? '<span class="lesson-fw-dot nist" role="img" aria-label="NIST CSF mapped" title="NIST CSF mapped"></span>' : '',
+        fw.mitre && fw.mitre.length ? '<span class="lesson-fw-dot mitre" role="img" aria-label="MITRE ATT&amp;CK mapped" title="MITRE ATT&amp;CK mapped"></span>' : ''
       ].join('') : '';
       html += `<button class="lesson-btn" id="sb-${mi}-${li}" onclick="goPage(${mi},${li},0)" aria-label="Navigate to lesson: ${lname} (${diffLabel})">${lname}${badge}${fwDots}</button>`;
     });
@@ -2385,7 +2420,10 @@ function showToast(icon, title, subtitle, isGold) {
   const el = document.createElement('div');
   el.id = 'sandbox-toast';
   el.className = 'toast' + (isGold ? ' toast-gold' : '');
-  el.innerHTML = `<div class="toast-icon">${icon}</div><div class="toast-text"><strong>${title}</strong><span>${subtitle}</span></div>`;
+  el.setAttribute('role', 'status');
+  el.setAttribute('aria-live', 'polite');
+  el.setAttribute('aria-atomic', 'true');
+  el.innerHTML = `<div class="toast-icon" aria-hidden="true">${icon}</div><div class="toast-text"><strong>${title}</strong><span>${subtitle}</span></div>`;
   document.body.appendChild(el);
   if (_toastTimer) clearTimeout(_toastTimer);
   _toastTimer = setTimeout(() => { if (el.parentNode) el.remove(); }, 3500);
@@ -2559,7 +2597,7 @@ function renderDashboard() {
       <div class="activity-feed">${feedHTML}</div>
 
       <div class="db-section-title"><span>&#9642;</span> Framework Coverage</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:28px;">
         <div style="background:var(--card);border:1px solid rgba(46,116,181,0.3);border-radius:10px;padding:14px 16px;">
           <div style="font-size:0.72rem;font-weight:700;color:#90C8FF;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:10px;">&#9632; NIST CSF Objectives</div>
           ${(() => {
@@ -2581,6 +2619,15 @@ function renderDashboard() {
             lessons.forEach(mod => mod.forEach(L => { if (L.framework && L.framework.mitre) L.framework.mitre.forEach(m => mitreSet.add(m)); }));
             return [...mitreSet].map(m =>
               `<span class="fw-chip fw-mitre">${m.split(' • ')[0]}</span>`).join('');
+          })()}</div>
+        </div>
+        <div style="background:var(--card);border:1px solid rgba(255,128,128,0.3);border-radius:10px;padding:14px 16px;">
+          <div style="font-size:0.72rem;font-weight:700;color:var(--red);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:10px;">&#9632; PCI-DSS v4.0 Requirements</div>
+          <div style="display:flex;flex-wrap:wrap;gap:4px;">${(() => {
+            const pciMap = {};
+            lessons.forEach(mod => mod.forEach(L => { if (L.framework && L.framework.pci) L.framework.pci.forEach(p => { pciMap[p] = (pciMap[p]||0)+1; }); }));
+            return Object.entries(pciMap).sort((a,b) => a[0].localeCompare(b[0])).map(([k,v]) =>
+              `<span class="fw-chip fw-pci" style="margin:2px;">${k} <span style="opacity:0.7;">&times;${v}</span></span>`).join('');
           })()}</div>
         </div>
       </div>
@@ -2617,6 +2664,11 @@ function renderDashboard() {
     </div>
   `;
   document.getElementById('main-content').innerHTML = html;
+  // BUG-003: Move focus to dashboard heading for screen reader announcement
+  setTimeout(() => {
+    const h1 = document.querySelector('#main-content h1');
+    if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus(); }
+  }, 100);
 }
 
 // ============================================================
@@ -2990,6 +3042,53 @@ function showUpgradeModal() {
   `;
   document.body.appendChild(overlay);
 }
+
+// ============================================================
+// ACCESSIBILITY FIXES (BUG-001, BUG-002)
+// ============================================================
+
+// BUG-002: Focus trap utility for modal dialogs
+function trapFocus(container) {
+  const focusable = container.querySelectorAll(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+  if (!focusable.length) return;
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  container.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+}
+
+// BUG-001: Global Escape key handler for modals and sidebar
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    // Close upgrade modal if open
+    const upgrade = document.getElementById('upgrade-overlay');
+    if (upgrade && upgrade.style.display !== 'none') {
+      upgrade.style.display = 'none';
+      return;
+    }
+    // Close welcome modal if open
+    const welcome = document.getElementById('welcome-overlay');
+    if (welcome) {
+      dismissWelcome('resume');
+      return;
+    }
+    // Close mobile sidebar if open
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar && sidebar.classList.contains('open')) {
+      closeSidebar();
+      const toggle = document.getElementById('sidebar-toggle');
+      if (toggle) toggle.focus();
+    }
+  }
+});
 
 // INIT
 // ============================================================
