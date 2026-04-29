@@ -17,7 +17,7 @@ SQL Security Sandbox teaches SQL through a **realistic cybersecurity investigati
 
 ## The Impact
 
-- **17 lessons** across 4 progressive modules
+- **35 lessons** across 7 progressive modules
 - **60+ hands-on exercises** with hints, feedback, and full explanations
 - **Zero dependencies** — one HTML file, no server, no install, no account
 - **Offline-capable PWA** — install it and use it anywhere
@@ -106,7 +106,7 @@ sql-security-sandbox/
 
 ## Roadmap
 
-- **Phase 2:** Real SQL execution engine (SQLite/WASM) for advanced modules
+- **Phase 2:** Real SQL execution engine (SQLite/WASM) for remaining modules
 - **Phase 2:** PDF lab report export and completion certificates
 - **Phase 3:** SCORM packaging for enterprise LMS integration
 - **Phase 3:** Freemium model with gated content (Modules 3–4)
