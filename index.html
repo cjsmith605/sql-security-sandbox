@@ -757,7 +757,7 @@
       <div class="subtitle">SQL Security Sandbox &mdash; Interactive Analyst Training</div>
       <div style="margin:0.5rem 0.75rem;padding:0.5rem 0.75rem;background:linear-gradient(135deg,#FF8C00,#E06000);border-radius:8px;text-align:center;">
         <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#fff;opacity:0.85;">FREE DEMO &mdash; Module 1</div>
-        <a href="#gumroad" id="cta-sidebar" onclick="showUpgradeModal();return false;" style="display:block;margin-top:0.35rem;padding:0.4rem 0;background:#fff;color:#E06000;font-weight:800;font-size:0.82rem;border-radius:6px;text-decoration:none;letter-spacing:0.03em;">&#128272; Unlock All 4 Modules</a>
+        <a href="#gumroad" id="cta-sidebar" onclick="showUpgradeModal();return false;" style="display:block;margin-top:0.35rem;padding:0.4rem 0;background:#fff;color:#E06000;font-weight:800;font-size:0.82rem;border-radius:6px;text-decoration:none;letter-spacing:0.03em;">&#128272; Unlock All 7 Modules</a>
       </div>
     </div>
   </div>
@@ -765,7 +765,7 @@
     <span class="xp-chip" id="xp-chip" title="Total XP earned">0 XP</span>
     <span class="header-progress" id="header-progress">0 / 17 lessons — 0% complete</span>
     <span class="save-indicator" id="save-indicator" aria-live="polite" aria-atomic="true">Progress saved</span>
-    <button class="btn-reset" onclick="exportProgress()" title="Download your progress as JSON" aria-label="Download progress" style="border-color:var(--teal);color:var(--teal);">&#8615; Export</button>
+    <button class="btn-reset" onclick="exportProgress()" title="Download your progress state as a JSON backup file (for transfer between machines)" aria-label="Export progress as JSON backup" style="border-color:var(--teal);color:var(--teal);">&#8615; Export Progress (JSON)</button>
     <button class="btn-reset" onclick="resetProgress()" title="Erase all saved progress and start over" aria-label="Reset all saved progress">Reset Progress</button>
   </div>
 </header>
@@ -2657,7 +2657,7 @@ function renderDashboard() {
       <div style="margin:1.5rem auto;max-width:420px;padding:1.25rem;background:linear-gradient(135deg,rgba(240,192,64,0.12),rgba(255,140,0,0.10));border:1.5px solid var(--gold);border-radius:12px;text-align:center;">
         <div style="font-size:1.5rem;margin-bottom:0.4rem;">&#128272;</div>
         <div style="color:var(--gold);font-weight:700;font-size:1rem;margin-bottom:0.3rem;">You're using the Free Demo</div>
-        <p style="color:var(--muted);font-size:0.85rem;line-height:1.4;margin:0 0 0.75rem;">This demo includes Module 1 (SQL Fundamentals). Unlock all 4 modules, 17 lessons, challenge labs, and certification.</p>
+        <p style="color:var(--muted);font-size:0.85rem;line-height:1.4;margin:0 0 0.75rem;">This demo includes Module 1 (SQL Fundamentals). Unlock all 7 modules, 35 lessons, 142 hands-on exercises, and a verifiable certificate.</p>
         <a href="#" onclick="showUpgradeModal();return false;" style="display:inline-block;padding:0.6rem 1.5rem;background:linear-gradient(135deg,var(--gold),#E8A030);color:#000;font-weight:800;font-size:0.9rem;border-radius:8px;text-decoration:none;">Get Full Version &rarr;</a>
       </div>
       <div class="footer">&copy; ${new Date().getFullYear()} Cosmic Innovators Collective | Building Digital Guardians</div>
@@ -3028,7 +3028,7 @@ function showUpgradeModal() {
       <button onclick="document.getElementById('upgrade-overlay').style.display='none'" style="position:absolute;top:0.75rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;">&times;</button>
       <div style="font-size:2.5rem;margin-bottom:0.5rem;">&#128640;</div>
       <h2 style="color:var(--gold);margin:0 0 0.5rem;">Unlock the Full Program</h2>
-      <p style="color:var(--text);font-size:0.95rem;line-height:1.5;margin-bottom:1rem;">You're using the <strong>free demo</strong> with Module 1 (SQL Fundamentals).<br>The full version includes <strong>all 4 modules</strong>, 17 lessons, challenge labs, and a certificate of completion.</p>
+      <p style="color:var(--text);font-size:0.95rem;line-height:1.5;margin-bottom:1rem;">You're using the <strong>free demo</strong> with Module 1 (SQL Fundamentals).<br>The full version includes <strong>all 7 modules</strong>, 35 lessons, 142 hands-on exercises, and a verifiable Completion Certificate.</p>
       <ul style="text-align:left;color:var(--muted);font-size:0.85rem;list-style:none;padding:0;margin:0 0 1.25rem;">
         <li style="margin-bottom:0.35rem;">&#10003; Module 2: Multi-Table Queries &amp; JOINs</li>
         <li style="margin-bottom:0.35rem;">&#10003; Module 3: Security Analysis &amp; Incident Response</li>
@@ -3036,7 +3036,7 @@ function showUpgradeModal() {
         <li style="margin-bottom:0.35rem;">&#10003; Capstone: Build an impossible-travel detector</li>
         <li>&#10003; Certificate of Completion</li>
       </ul>
-      <a href="https://gumroad.com" target="_blank" rel="noopener" style="display:inline-block;padding:0.75rem 2rem;background:linear-gradient(135deg,var(--gold),#E8A030);color:#000;font-weight:800;font-size:1rem;border-radius:8px;text-decoration:none;letter-spacing:0.03em;">Get Full Version on Gumroad &rarr;</a>
+      <a href="https://cosmicsoc.gumroad.com/l/sql-security-sandbox" target="_blank" rel="noopener" style="display:inline-block;padding:0.75rem 2rem;background:linear-gradient(135deg,var(--gold),#E8A030);color:#000;font-weight:800;font-size:1rem;border-radius:8px;text-decoration:none;letter-spacing:0.03em;">Get Full Version on Gumroad &rarr;</a>
       <p style="color:var(--muted);font-size:0.75rem;margin-top:0.75rem;">One-time purchase &bull; Instant download &bull; Lifetime updates</p>
     </div>
   `;
